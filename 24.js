@@ -50,16 +50,12 @@ Problem24.prototype.getSolution = function () {
   var magnitude = 1;
   for (var i=0; i<9; i++) {
     permutations = this.factorial(9-i);
-    console.log('Per: '+permutations);
-
     for (var j=0; j<1000000-current_number; j+=permutations) {
-      //x
     }
-    var magnitude = j / permutations - 1;
+    magnitude = j / permutations - 1;
     current_number += magnitude*permutations;
     result.push(digits[magnitude]);
     digits.splice(magnitude,1);
-    console.log(magnitude, current_number );
   }
   result.push(digits[0]);
 
