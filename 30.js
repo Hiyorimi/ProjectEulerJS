@@ -16,14 +16,14 @@ Problem.prototype.solve = function () {
   return this.getProblemText() + "\nAnswer: " + this.getSolution();
 }
 
-function Problem29 (problem_text) {
+function Problem30 (problem_text) {
   this._problem_text = problem_text;
 }
 
-Problem29.prototype = Object.create(Problem.prototype);
-Problem29.prototype.constructor = Problem29;
+Problem30.prototype = Object.create(Problem.prototype);
+Problem30.prototype.constructor = Problem30;
 
-Problem29.prototype.getSolution = function () {
+Problem30.prototype.getSolution = function () {
 
   var numbers = [];
   var a_string = '';
@@ -57,6 +57,6 @@ The sum of these numbers is 1634 + 8208 + 9474 = 19316.
 \n
 Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.`;
 
-var problem = new Problem29(problem_text);
+var problem = new Problem30(problem_text);
 
 console.log (problem.solve());
