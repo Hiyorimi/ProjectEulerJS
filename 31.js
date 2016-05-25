@@ -1,23 +1,47 @@
 'use strict'
 
-function Problem (problem_text) {
+/**
+     * Sets Problem
+     * @class Class for projecteuler problem
+     * @param {String} problem_text Task as text
+     * @param {Object} arguments Arguments array 
+     */
+function Problem (problem_text, input_arguments) {
   this._problem_text = problem_text;
+  this._arguments = input_arguments; 
 }
 
+/**
+ * getProblemText() returns text of the problem
+ *
+ * @return {String} this._problem_text
+ */
 Problem.prototype.getProblemText = function () {
   return this._problem_text;
 }
 
+/**
+ * getSolution() is an abstract function for calculating the answer
+ *
+ * @return {Int} 0
+ */
 Problem.prototype.getSolution = function () {
   return 0;
 }
 
+/**
+ * solve() prints _problem_text and answer, for which calls this.getSolution()
+ * as String
+ *
+ * @return Nan
+ */
 Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
+  console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
 }
 
-function Problem31 (problem_text) {
-  this._problem_text = problem_text;
+
+function Problem31 (problem_text, input_arguments) {
+  Problem.apply(this, arguments);
   this.coins = [1, 2, 5, 10, 20, 50, 100, 200];
 }
 
@@ -25,14 +49,18 @@ Problem31.prototype = Object.create(Problem.prototype);
 Problem31.prototype.constructor = Problem31;
 
 
-Problem31.prototype.countNumbers = function (sum) {
-  var subset = this.getCoinsLessThan(sum);
-  //At first we search for the least number to 
-}
-
+/**
+ * getSolution() calculates in how many different ways can target in pences
+ * be represented using any number of coins.
+ * target is included as a parameter to demostrate speed up by using 
+ * dynamic programming
+ *
+ * @param {Int} target
+ * @return {Int} ways
+ */
 Problem31.prototype.getSolution = function () {
 
-  var target  = 200;
+  var target = typeof this._arguments[0] !== 'undefined' ? +this._arguments[0] : 200;
   var ways = 0;
    
   //BruteForse approach
@@ -95,6 +123,8 @@ It is possible to make £2 in the following way:
 1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 How many different ways can £2 be made using any number of coins?`;
 
-var problem = new Problem31(problem_text);
 
-console.log (problem.solve());
+var problem = new Problem31(problem_text, process.argv.splice(2,args.length-1));
+
+
+problem.solve();
