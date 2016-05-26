@@ -124,7 +124,7 @@ It is possible to make £2 in the following way:
 How many different ways can £2 be made using any number of coins?`;
 
 
-var problem = new Problem31(problem_text, process.argv.splice(2,args.length-1));
+var problem = new Problem31(problem_text, process.argv.splice(2,process.argv.length-1));
 
 
 problem.solve();
