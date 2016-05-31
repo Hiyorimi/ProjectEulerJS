@@ -1,5 +1,7 @@
 'use strict'
 
+let Problem = require('./problem').Problem
+
 /**
  * Sets Problem36
  * @class Class for solviong projecteuler 36th problem
@@ -7,10 +9,10 @@
  * @param {Object} arguments - Arguments array 
  */
 function Problem36 (problem_text, input_arguments) {
-  require("./problem").Problem.apply(this, arguments);
+  Problem.apply(this, arguments);
 }
 
-Problem36.prototype = Object.create(require("./problem").Problem.prototype);
+Problem36.prototype = Object.create(Problem.prototype);
 Problem36.prototype.constructor = Problem36;
 
 /**
