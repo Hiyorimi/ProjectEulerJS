@@ -15,16 +15,34 @@ function Problem44 (problem_text, input_arguments) {
 Problem44.prototype = Object.create(Problem.prototype);
 Problem44.prototype.constructor = Problem44;
 
+
+/**
+ * getNthPentagonal(n) returns Nth pentagonal number
+ *
+ * @param {Int} n
+ * @return {Int} 
+ */
 Problem44.prototype.getNthPentagonal = function (n) {
   return n*(3*n-1)/2;
 }
 
+/**
+ * isInt(value) returns true if value is of Int type
+ *
+ * @param {Int} n
+ * @return {Bool} 
+ */
 Problem44.prototype.isInt = function(value) {
   var x = parseFloat(value);
   return !isNaN(value) && (x | 0) === x;
 }
 
-
+/**
+ * isPentagonal(n) return true if x is a pentagonal number
+ *
+ * @param {Int} n
+ * @return {Bool} 
+ */
 Problem44.prototype.isPentagonal = function (n) {
   let x = (Math.sqrt(24*n+1)+1) / 6
 

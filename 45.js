@@ -16,7 +16,12 @@ Problem45.prototype = Object.create(Problem.prototype);
 Problem45.prototype.constructor = Problem45;
 
 
-
+/**
+ * isPentagonal(n) return true if x is a pentagonal number
+ *
+ * @param {Int} n
+ * @return {Bool} 
+ */
 Problem45.prototype.isPentagonal = function (n) {
   let x = (Math.sqrt(24*n+1)+1) / 6
 

@@ -54,6 +54,13 @@ Problem46.prototype.sieveOfEratosthenes = function (max) {
     return output;
 }
 
+
+/**
+ * isTwiceSquared(n) return true if x = sqrt(n/2) is an
+ *
+ * @param {Int} n
+ * @return {Bool} 
+ */
 Problem46.prototype.isTwiceSquared = function (n) {
   let x = Math.sqrt(n/2);
 
@@ -65,6 +72,8 @@ Problem46.prototype.getSolution = function () {
     let result = 33;
     let i = 0;
 
+    console.time("Bruteforce");
+    
     for ( ; result < 1000000; result += 2) {
       //if "is composite"
       if (this._primes.indexOf(result) < 0){
@@ -80,6 +89,8 @@ Problem46.prototype.getSolution = function () {
         }
       }
     }
+
+    console.timeEnd("Bruteforce");
 
     return result;
 }
