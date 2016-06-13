@@ -52,19 +52,6 @@ Problem43.prototype.isPandigital = function (arr) {
 }
 
 
-/**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem43.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
-}
-
-
 
 /**
  * getDigits(n) returns digits of input parameter
@@ -77,29 +64,6 @@ Problem43.prototype.getDigits = function (n) {
     return +elem;
   });
 }
-
-/**
- * substringDivisible(n) checks if substrings are divisible
- *
- * @param {Int} digits - Pandigital number as array of digits
- * @return {Bool} result
- */
-Problem43.prototype.substringDivisible = function (digits) {
-  let result = true;
-  let number = 0;
-
-  for (let i = 1; i < digits.length-2; i++){
-    number = +(digits[i]+digits[i+1]+digits[i+2]);
-    if (number % this.divisors[i-2] !=0 ) {
-      result = false;
-      break;
-    }
-  }
-
-  return result
-
-}
-
 
 /**
  * substringDivisible(n) checks if substrings are divisible
