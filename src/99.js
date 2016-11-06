@@ -3,12 +3,12 @@
 let Problem = require('./problem').Problem;
 //big-integer is better than BigInt 
 let bigInt = require("big-integer");
+let fs = require('fs');
 
 function Problem99 (problem_text, input_arguments) {
   Problem.apply(this, arguments);
 }
 
-var fs = require('fs');
 Problem99.prototype = Object.create(Problem.prototype);
 Problem99.prototype.constructor = Problem99;
 
