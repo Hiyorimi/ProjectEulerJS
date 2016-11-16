@@ -70,7 +70,9 @@ Problem59.prototype.getSolution = function () {
 
   console.timeEnd("Bruteforce");
 
-  return result;
+  return result.split("").reduce(function (result, current) {
+    return result + current.charCodeAt(0);
+  },0);
 }
 
 var problem_text = `
