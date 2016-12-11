@@ -15,13 +15,13 @@ Problem62.prototype = Object.create(Problem.prototype);
 Problem62.prototype.constructor = Problem62;
 
 /**
- * getLowestPermutation(initial_number) returns lowest permuted
+ * getHighestPermutation(initial_number) returns highest permuted
  * form of initial_number
  *
  * @param {Int} initial_number
- * @return {Int} lowest_avalialble_permutation
+ * @return {Int} highest_avalialble_permutation
  */
-Problem62.prototype.getLowestPermutation = function (initial_number) {
+Problem62.prototype.getHighestPermutation = function (initial_number) {
     return +this.getDigits(initial_number).sort().reverse().join('');
 }
 
@@ -53,35 +53,35 @@ Problem62.prototype.getSolution = function () {
 
   console.time("Bruteforce");
 
-  let lowest_permutation_cubes_counter = {};
+  let permutation_cubes_counter = {};
 
   let n = 345, 
         cube = 0,
-        lowest_permutation = 0;
+        highest_permutation = 0;
 
   let result = false;
 
   while ((!result)) {
         cube = n * n * n;
-        lowest_permutation = this.getLowestPermutation(cube);
-        if (lowest_permutation in lowest_permutation_cubes_counter) {
-            lowest_permutation_cubes_counter[lowest_permutation].counter ++;
-            lowest_permutation_cubes_counter[lowest_permutation].cubes.push(n);
+        highest_permutation = this.getHighestPermutation(cube);
+        if (highest_permutation in permutation_cubes_counter) {
+            permutation_cubes_counter[highest_permutation].counter ++;
+            permutation_cubes_counter[highest_permutation].cubes.push(n);
         }
         else 
-            lowest_permutation_cubes_counter[lowest_permutation] = {
+            permutation_cubes_counter[highest_permutation] = {
                 counter: 1,
                 cubes: [n]
             };
         n++;
         result = this.checkProblemConditionFullfills(
-      lowest_permutation_cubes_counter);
+      permutation_cubes_counter);
   }
   
 
   console.timeEnd("Bruteforce");
 
-  return lowest_permutation_cubes_counter[result].cubes.map(
+  return permutation_cubes_counter[result].cubes.map(
       function (element, index, array) {
         return Math.pow(element,3);
       }).sort()[0];

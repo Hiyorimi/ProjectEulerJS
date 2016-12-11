@@ -49,6 +49,20 @@ Problem.prototype.solve = function () {
 
 
 /**
+ * is_prime(number) checks if number is a prime
+ *
+ * @param {Int} number
+ * @return {Int} denominator or false
+ */
+Problem.prototype.is_prime = function (number) {
+    var start = 2;
+    while (start <= Math.sqrt(number)) {
+        if (number % start++ < 1) return false;
+    }
+    return number > 1;
+}
+
+/**
  * Factorial(n) returns n!
  *
  * @param {Int} n
@@ -114,6 +128,134 @@ Problem.prototype.getDigits = function (n) {
   });
 }
 
+
+/**
+ * getPermutations(input_arr) returns all permutations of input_arr elements
+ * From: http://stackoverflow.com/questions/9960908/permutations-in-javascript
+ * 
+ * @param {Int} input_arr - array to permutate
+ * @return {Array} permutated
+ */
+Problem.prototype.getPermutations = function (input_arr) {
+  var results = [];
+
+  function permute(arr, memo) {
+    var cur, memo = memo || [];
+
+    for (var i = 0; i < arr.length; i++) {
+      cur = arr.splice(i, 1);
+      if (arr.length === 0) {
+        results.push(memo.concat(cur));
+      }
+      permute(arr.slice(), memo.concat(cur));
+      arr.splice(i, 0, cur[0]);
+    }
+
+    return results;
+  }
+
+  return permute(input_arr);
+}
+
+
+
+/**
+ * sieveOfEratosthenes(max) returns primes below max
+ * From http://stackoverflow.com/questions/15491291/sieve-of-eratosthenes-algorithm-in-javascript-running-endless-for-large-number
+ *
+ * @param {Int} max
+ * @return {Array} output
+ */
+Problem.prototype.sieveOfEratosthenes = function (max) {
+    // Eratosthenes algorithm to find all primes under max
+    let array = [], upperLimit = Math.sqrt(max), output = [];
+
+    // Make an array from 2 to (n - 1)
+    for (let i = 0; i < max; i++) {
+        array.push(true);
+    }
+
+    // Remove multiples of primes starting from 2, 3, 5,...
+    for (let i = 2; i <= upperLimit; i++) {
+        if (array[i]) {
+            for (let j = i * i; j < max; j += i) {
+                array[j] = false;
+            }
+        }
+    }
+
+    // All array[i] set to true are primes
+    for (let i = 2; i < max; i++) {
+        if(array[i]) {
+            output.push(i);
+        }
+    }
+
+    return output;
+}
+
+
+/**
+ * getSortedKeys(onj) returns dictionary sorted by values
+ *
+ * @param {Dict} obj
+ * @return {Array} sorted array of keys (desc)
+ */
+Problem.prototype.getSortedKeys = function (obj) {
+    var keys = []; for(var key in obj) keys.push(key);
+    return keys.sort(function(a,b){return obj[a]-obj[b]});
+}
+
+
+/**
+ * getDivisors(number) returns number divisors
+ * from http://jsfiddle.net/r8wh715t/
+ * 
+ * @param {Int} number
+ * @return {Array} divisors
+ */
+Problem.prototype.getDivisors = function (num, exclude_self) {
+    var exclude_self = typeof exclude_self !== 'undefined' ? exclude_self : false;
+    var divisors = [1] // 1 will be a part of every solution.
+    var half = Math.floor(num / 2), // Ensures a whole number <= num.
+        i, j;
+
+    // Determine out increment value for the loop and starting point.
+    num % 2 === 0 ? (i = 2, j = 1) : (i = 3, j = 2);
+
+    for (i; i <= half; i += j) {
+        num % i === 0 ? divisors.push(i) : false;
+    }
+
+    if (!exclude_self)
+      divisors.push(num); // 
+    return divisors;
+}
+
+
+/**
+ * getProperDivisors(number) returns number proper divisors.
+ * The proper divisors of a number are all the divisors 
+ * excluding the number itself.
+ * from http://jsfiddle.net/r8wh715t/
+ * 
+ * @param {Int} number
+ * @return {Array} proper_divisors
+ */
+Problem.prototype.getProperDivisors = function (num) {
+    return this.getDivisors(num, true);
+}
+
+
+/**
+ * isPalindrom() is a function for checking if input string is palindrom
+ *
+ * @param {String} str - input string
+ * @return {Bool} 
+ */
+Problem.prototype.isPalindrom = function (str) {
+    return str == str.split('').reverse().join('');
+}
 
 module.exports = new Problem();
 module.exports.Problem = Problem;
