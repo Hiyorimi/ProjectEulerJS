@@ -28,3 +28,4 @@ public/
 # Misc
 webpack.config.js
 bundle.js
+.vscode
