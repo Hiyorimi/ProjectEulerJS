@@ -257,5 +257,48 @@ Problem.prototype.isPalindrom = function (str) {
     return str == str.split('').reverse().join('');
 }
 
+
+
+/**
+ * getPolygonalNumber(a,n) returns a corresponding polygonal number P_(a,n)
+ *
+ * @param {Int} a — arity of polygonal number to generate
+ * @param {Int} n — number for which polygonal number is generated
+ * @return {Int} P_(a,n)
+ */
+Problem.prototype.getPolygonalNumber = function (a, n) {
+    let result = false;
+    switch (a) {
+        case 3: {
+            result = (n*(n+1))/2;
+            break;
+        }
+        case 4: {
+            result = n*n;
+            break;
+        }
+        case 5: {
+            result = (n*(3*n-1))/2;
+            break;
+        }
+        case 6: {
+            result = n*(2*n-1);
+            break;
+        }
+        case 7: {
+            result = (n*(5*n-3))/2;
+            break;
+        }
+        case 8: {
+            result = n*(3*n-2);
+            break;
+        }
+        default: {
+            throw new Error('a should be in [3,8]');
+        }
+    }
+    return result;
+}
+
 module.exports = new Problem();
 module.exports.Problem = Problem;

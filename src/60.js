@@ -12,36 +12,6 @@ Problem60.prototype = Object.create(Problem.prototype);
 Problem60.prototype.constructor = Problem60;
 
 
-
-
-/**
- * _is_prime(number) checks if number is a prime
- *
- * @param {Int} number
- * @return {Int} denominator or false
- */
-
-Problem60.prototype._is_prime = function (a) {
-  return (this._primes.indexOf(a) > 0);
-}
-
-/**
- * makePairs(index) creates pairs for all the primes 
- * starting with index 
- *
- * @param {Int} index of prime
- * @return {Array} Array of coressponding primes
- */
-Problem60.prototype.makePairs = function (a) {
-  let pairs = [];
-  for (let b = a + 1; b < this._primes.length; b++) {
-    if (this.is_prime(parseInt("" + this._primes[a] + this._primes[b])) && 
-        this.is_prime(parseInt("" + this._primes[b] + this._primes[a])) )
-      pairs.push(this._primes[b]);
-  }
-  return pairs;
-}
-
 /**
  * satisfies(prime, set) checks if prime satisfies 
  * the condition
@@ -62,10 +32,12 @@ Problem60.prototype.satisfies = function (p, set) {
 
 
 /**
- * makePairs(index) creates pairs for all the primes 
- * starting with index 
+ * makeSet(set, target, start) creates set  
+ * starting with start 
  *
- * @param {Int} index of prime
+ * @param {Array} set to work on
+ * @param {Int} target — maximum
+ * @param {Int} start
  * @return {Array} Array of coressponding primes
  */
 Problem60.prototype.makeSet = function (set, target, start) {
