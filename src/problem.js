@@ -300,5 +300,8 @@ Problem.prototype.getPolygonalNumber = function (a, n) {
     return result;
 }
 
+
+
+
 module.exports = new Problem();
 module.exports.Problem = Problem;
