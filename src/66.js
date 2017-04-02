@@ -11,6 +11,35 @@ function Problem66 (problem_text, input_arguments) {
 Problem66.prototype = Object.create(Problem.prototype);
 Problem66.prototype.constructor = Problem66;
 
+/**
+ * solver(x) finds root
+ * for more info: https://en.wikipedia.org/wiki/Pell%27s_equation
+ *
+ * @return {Int} p[n]
+ */
+Problem66.prototype.solver = function (x) {
+    var a, b, c, d, e, f, k, n;
+    var p, q;
+
+    k = Math.floor(Math.sqrt(x));
+    if (k * k == x) return 0;
+
+    a = k, e = k, f = 1, n = 1;
+    p = [1, k], q = [0, 1];
+
+    for (;;) {
+      b = (x - e * e) / f;
+      c = Math.floor((k + e) / b);
+      d = c * b - e;
+      a = c, e = d, f = b;
+      if (a == 2 * k && n % 2 == 0) break;
+      n += 1;
+      p[n] = a * p[n - 1] + p[n - 2];
+      q[n] = a * q[n - 1] + q[n - 2];
+    }
+
+    return p[n];
+}
 
 /**
  * getSolution() returns solution of problem
@@ -21,23 +50,17 @@ Problem66.prototype.getSolution = function () {
 
   console.time("Bruteforce");
 
-  let maximum = 100,
-      result = 0,
-      d = bigInt(1),
-      n = bigInt(2),
-      t = bigInt(0);
-
-  for (let i = 2; i <= maximum; i++) {
-      t = d;
-      let c = (i % 3 == 0) ? 2 * (i / 3) : 1;
-      d = n; 
-      n = d.multiply(c).add(t);
+  let ans = 0;
+  let max = 0;
+  for (let D = 2; D <= 1000; D++) {
+    let x = this.solver(D);
+    if (x > max) {
+      max = x;
+      ans = D;
+    }
   }
 
-  let divider = bigInt(10);
-  result = n.toString().split('').reduce ( (p,v) => {
-      return parseInt(p)+parseInt(v); 
-  }, 0);
+  let result = ans
 
   console.timeEnd("Bruteforce");
 
