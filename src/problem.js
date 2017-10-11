@@ -301,6 +301,101 @@ Problem.prototype.getPolygonalNumber = function (a, n) {
 }
 
 
+/**
+ * permute (string) returns an array with all permutations of a
+ * given subset size
+ * 
+ * From: https://stackoverflow.com/questions/7234319/list-permutations
+ *
+ * @param {Object} input — string of elements to be permuted
+ * @param {Int} size — length of subset to draw
+ * @return {Object} result
+ */
+Problem.prototype.permute = function (input, size) {
+
+    var chars = input.split('');
+    var output = [];
+    var used = new Array(chars.length);     
+
+    var results = [];    
+    
+    function doPermute(input, output, used, size, level) {        
+            
+        if (size == level) {
+            var word = output.join('');
+            results.push(word);
+            return;
+        } 
+        
+        level++;
+        
+        for (var i = 0; i < input.length; i++) {
+            if (used[i]) {
+                continue;
+            }            
+            used[i] = true;
+            output.push(input[i]);
+            doPermute(input, output, used, size, level);
+            used[i] = false;
+            output.pop();
+        }
+    }
+
+    doPermute(chars, output, used, size, 0);
+
+    return results;   
+}
+
+
+
+/**
+ * getAllSubsetPermutations (string) returns an array with all permutations of a
+ * given subset, including that of length N
+ *
+ * @param {Object} input — string of elements to be permuted
+ * @return {Object} result
+ */
+Problem.prototype.getAllSubsetPermutations = function (input) {
+
+    let result = {};
+    for (let i = 2; i <= input.length; i++) {
+        result[i] = this.permute(input, i);
+    }
+    
+    return result;   
+}
+
+/**
+ * getUniqueString (string) returns unique chars from input string
+ *
+ * @param {Object} string — string to check
+ * @return {Object} result
+ */
+Problem.prototype.getUniqueString = function (str) {
+    let length = 0;
+    let unique = '';
+    for (var x = 0; x < str.length; x++) {
+
+        if(unique.indexOf(str.charAt(x))==-1) {
+            unique += str[x];
+        }
+    }
+    return unique;  
+} 
+
+/**
+ * isSquare (square) returns if number is a square of int
+ *
+ * @param {Int} square — int to check
+ * @return {Bool} result
+ */
+Problem.prototype.isSquare = function (square) {
+    if (Math.sqrt(square) % 1 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 module.exports = new Problem();

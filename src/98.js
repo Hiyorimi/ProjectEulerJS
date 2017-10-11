@@ -4,6 +4,8 @@ let Problem = require('./problem').Problem;
 
 function Problem98 (problem_text, input_arguments) {
   Problem.apply(this, arguments);
+  // Pre-generate all the available permutations
+  this._permutations = this.getAllSubsetPermutations('123456789');
 }
 
 var fs = require('fs');
@@ -11,52 +13,56 @@ var fs = require('fs');
 Problem98.prototype = Object.create(Problem.prototype);
 Problem98.prototype.constructor = Problem98;
 
-Problem98.prototype.countUniqueStringLength = function (str) {
-    var length = 0;
-    for (var x = 0; x < str.length; x++) {
-
-        if(unique.indexOf(str.charAt(x))==-1) {
-            length += 1;  
-        }
-    }
-    return length;  
-} 
-
 Problem98.prototype.getHash = function (word) {
   return word.split("").sort().join("");
 }
 
-Problem98.prototype.getAllSquaresAndCodings = function (word, number_from_word) {
-    if (word.length == number_from_word.length) {
-        // Check that number is a square
-        let square = number_from_word.split("").reduce(function (prev, cur) {
-            return prev + cur*cur;
-        }, 0);
-        if (Math.sqrt(square) % 1 === 0) {
-            return square;
-        }
-    } else {
-        // Initiation
-        for (let i = number_from_word.length; i < word.length; i++) {
-            for (let j = 0; j < 10; j++)
-                return 
+Problem98.prototype.getNumericalRepresentation = function (word, coding) {
+    let number_from_word = '';
+    for (let i = 0; i < word.length; i++) {
+        number_from_word += coding[word[i]];
+    }
+    return parseInt(number_from_word);
+}
+
+Problem98.prototype.getWordCoding = function (unique_word, permutation) {
+    let coding = {};
+    for (let i = 0; i < unique_word.length; i++) {
+        coding[unique_word[i]] = permutation[i];
+    }
+    return coding;
+}
+
+Problem98.prototype.getMaximumSquare = function (word_a, word_b, maximum_square) {
+    // Initiation
+    let unique_word = this.getUniqueString(word_a);
+    let unique_word_length = unique_word.length;
+    let number_a = 0,
+        number_b = 0,
+        coding = {};
+    let permutations = this._permutations[unique_word_length];
+    let _maximum_square = maximum_square;
+    for (let i = 0; i < permutations.length; i++) {
+        coding = this.getWordCoding(unique_word, permutations[i]) 
+        number_a = this.getNumericalRepresentation(word_a, coding);
+        number_b = this.getNumericalRepresentation(word_b, coding);
+        if ( (this.isSquare(number_a)) && (this.isSquare(number_b)) ) {
+            _maximum_square = Math.max(number_a, number_b, _maximum_square);
         }
     }
     
-}
-
-Problem98.prototype.getMaximumSquareHash = function (words) {
-    for (let word of words) {
-        
-    }
+    return _maximum_square;
 }
 
 Problem98.prototype.getSolution = function () {
     
   console.time("Bruteforce");
-  let file_contents = fs.readFileSync('p098_words.txt');
+  let file_contents = fs.readFileSync(__dirname + '/p098_words.txt');
   let words = file_contents.toString().replace(/['"]+/g, '').split(',');
   let hashes = {};
+  let that = this;
+
+  let result = 0;
 
   for (let i = 0; i < words.length; i++) {
       let word = words[i];
@@ -68,14 +74,17 @@ Problem98.prototype.getSolution = function () {
       }
   }
   Object.keys(hashes).map(function(key, index) {
-    if (hashes[key].length > 1) 
-        console.log(hashes[key]);
+    if (hashes[key].length > 1) {
+        for (let i = 0; i < hashes[key].length; i++) 
+            for (let j = i+1 ; j < hashes[key].length; j++)
+                result = that.getMaximumSquare(hashes[key][i], hashes[key][j], result);
+    }
  });
   
 
   console.timeEnd("Bruteforce");
 
-  return 1;
+  return result;
 }
 
 var problem_text = `
