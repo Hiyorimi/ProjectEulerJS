@@ -86,7 +86,7 @@ Problem42.prototype.getSolution = function () {
 
     let result = 0;
     let fs = require('fs');
-    let words = fs.readFileSync('p042_words.txt');
+    let words = fs.readFileSync(__dirname + '/p042_words.txt');
     let words_arr = words.toString().split(',').map(function (elem) {
       return elem.replace(/"/g,'');
     }).sort();

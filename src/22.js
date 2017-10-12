@@ -35,7 +35,7 @@ Problem22.prototype.getCharsSum = function (str) {
 }
 Problem22.prototype.getSolution = function () {
     
-  var names = fs.readFileSync('p022_names.txt');
+  var names = fs.readFileSync(__dirname+'/p022_names.txt');
   var names_arr = names.toString().split(',').map(function (elem) {
     return elem.replace(/"/g,'');
   }).sort();
