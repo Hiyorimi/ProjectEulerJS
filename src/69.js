@@ -81,6 +81,7 @@ Problem69.prototype.totient = function (n) {
 }
 
 
+
 /**
  * getSolution() returns solution of problem
  *
@@ -104,7 +105,10 @@ Problem69.prototype.getSolution = function () {
 }
 
 var problem_text = `
-Euler's Totient function, φ(n) [sometimes called the phi function], is used to determine the number of numbers less than n which are relatively prime to n. For example, as 1, 2, 4, 5, 7, and 8, are all less than nine and relatively prime to nine, φ(9)=6.
+Euler's Totient function, φ(n) [sometimes called the phi function], is 
+used to determine the number of numbers less than n which are relatively 
+prime to n. For example, as 1, 2, 4, 5, 7, and 8, are all less than nine 
+and relatively prime to nine, φ(9)=6.
 \n
 n	Relatively Prime	φ(n)	n/φ(n)
 2	1	1	2
