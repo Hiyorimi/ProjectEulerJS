@@ -235,6 +235,22 @@ Problem.prototype.getDivisors = function (num, exclude_self) {
 
 
 /**
+ * gcd(a, b) returns greatest commond divisor
+ *
+ * @param {Int} a
+ * @param {Int} b
+ * @return {Int} gcd
+ */
+Problem.prototype.gcd = function (a, b) {
+    if (!b) {
+      return a;
+    }
+  
+    return this.gcd(b, a % b);
+  }
+  
+
+/**
  * getProperDivisors(number) returns number proper divisors.
  * The proper divisors of a number are all the divisors 
  * excluding the number itself.

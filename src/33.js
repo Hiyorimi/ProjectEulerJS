@@ -1,44 +1,6 @@
 'use strict'
 
-/**
-     * Sets Problem
-     * @class Class for projecteuler problem
-     * @param {String} problem_text Task as text
-     * @param {Object} arguments Arguments array 
-     */
-function Problem (problem_text, input_arguments) {
-  this._problem_text = problem_text;
-  this._arguments = input_arguments; 
-}
-
-/**
- * getProblemText() returns text of the problem
- *
- * @return {String} this._problem_text
- */
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-/**
- * getSolution() is an abstract function for calculating the answer
- *
- * @return {Int} 0
- */
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-/**
- * solve() prints _problem_text and answer, for which calls this.getSolution()
- * as String
- *
- * @return Nan
- */
-Problem.prototype.solve = function () {
-  console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
-}
-
+let Problem = require('./problem').Problem;
 
 function Problem33 (problem_text, input_arguments) {
   Problem.apply(this, arguments);
@@ -90,21 +52,6 @@ Problem33.prototype.isCurious = function (numerator, denominator) {
 }
 
 
-
-/**
- * gcd(a, b) returns greatest commond divisor
- *
- * @param {Int} a
- * @parma {Int} b
- * @return {Int} gcd
- */
-Problem33.prototype.gcd = function (a, b) {
-  if (!b) {
-    return a;
-  }
-
-  return this.gcd(b, a % b);
-}
 
 /**
  * getSolution() returns solution of problem

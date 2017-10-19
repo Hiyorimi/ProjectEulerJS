@@ -1,15 +1,13 @@
 'use strict'
 
 let Problem = require('./problem').Problem;
-let bigInt = require('big-integer');
 
-function Problem72 (problem_text, input_arguments) {
+function Problem73 (problem_text, input_arguments) {
   Problem.apply(this, arguments);
-  this._primes = this.sieveOfEratosthenes(1000000);
 }
 
-Problem72.prototype = Object.create(Problem.prototype);
-Problem72.prototype.constructor = Problem72;
+Problem73.prototype = Object.create(Problem.prototype);
+Problem73.prototype.constructor = Problem73;
 
 
 
@@ -18,25 +16,19 @@ Problem72.prototype.constructor = Problem72;
  *
  * @return {Int} denominator
  */
-Problem72.prototype.getSolution = function () {
+Problem73.prototype.getSolution = function () {
 
   console.time("Bruteforce");
 
-  let n = 10,
-      phi = [],
-      result = bigInt(0),
-      best_ratio = Number.MAX_SAFE_INTEGER,
-      limit = 1e6;
-
-  for (let i = 0; i <= limit + 1; i++) phi[i] = i;
+  let a = 3,
+      b = 2,
+      limit = 12000,
+      result = 0;
   
-  for (let i = 2; i <= limit; i++) {
-    if (phi[i] == i) {
-      for (let j = i; j <= limit; j += i) {
-          phi[j] = phi[j] / i * (i - 1);
-      }
+  for (let d = 5; d <= limit; d++) {
+    for (let i = parseInt(d / a) + 1; i < parseInt((d - 1) / b) + 1; i++) {
+      if (this.gcd(i,d) == 1) result ++;
     }
-    result =  result.add(phi[i]);
   }
 
   console.timeEnd("Bruteforce");
@@ -60,7 +52,7 @@ How many elements would be contained in the set of reduced proper
 fractions for d ≤ 1,000,000?`;
 
 
-var problem = new Problem72(problem_text, process.argv.splice(
+var problem = new Problem73(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
