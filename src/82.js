@@ -13,7 +13,7 @@ Problem82.prototype.constructor = Problem82;
 
 Problem82.prototype.getSolution = function () {
     
-  let matrix = fs.readFileSync('./src/p081_matrix.txt');
+  let matrix = fs.readFileSync(__dirname + '/p081_matrix.txt');
   let grid = [];
 
   console.time("Bruteforce");
