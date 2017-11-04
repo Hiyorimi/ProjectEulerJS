@@ -17,53 +17,7 @@ Problem43.prototype = Object.create(Problem.prototype);
 Problem43.prototype.constructor = Problem43;
 
 
-/**
- * isPandigital(arr) returns true if all digits are different and are in range 0-9
- *
- * @param {Object} arr 
- * @return {Bool} result
- */
-Problem43.prototype.isPandigital = function (arr) {
 
-  let result = true;
-  let s = '';
-  let chars = {};
-
-  for (let i = 0; i < arr.length; i++) {
-    s = arr[i].toString();
-    for (let j = 0; j < s.length; j++) {
-      if (!(s[j] in chars)) {
-        chars[s[j]] = 1;
-      }
-      else {
-        result = false;
-        break;
-      }
-    }
-  }
-
-  for (let i = 0; i < 10; i++) {
-    if (arr.indexOf(i) < 0)
-        result = false;
-  }
-
-
-  return result;
-}
-
-
-
-/**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem43.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
-}
 
 /**
  * substringDivisible(n) checks if substrings are divisible

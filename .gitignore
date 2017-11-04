@@ -27,5 +27,6 @@ public/
 
 # Misc
 webpack.config.js
+package-lock.json
 bundle.js
 .vscode

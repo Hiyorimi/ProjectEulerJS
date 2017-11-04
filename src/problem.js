@@ -128,6 +128,20 @@ Problem.prototype.getDigits = function (n) {
   });
 }
 
+/**
+ * getRandomIntInclusive(n) returns random Int [min, max]
+ *
+ * @param {Int} min
+ * @param {Int} max
+ * @return {Int} random
+ */
+Problem.prototype.getRandomIntInclusive = function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    //The maximum is inclusive and the minimum is inclusive 
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
+
 
 /**
  * getPermutations(input_arr) returns all permutations of input_arr elements
@@ -155,6 +169,42 @@ Problem.prototype.getPermutations = function (input_arr) {
   }
 
   return permute(input_arr);
+}
+
+/**
+ * isPandigital(arr) returns true if all digits are different and are in range 1-9
+ *
+ * @param {Object} arr of 9 numbers.
+ * @return {Bool} result
+ */
+Problem.prototype.isPandigital = function (arr) {
+    
+      if (arr.length != 9)
+        return false;
+    
+      var result = true;
+      var s = '';
+      var chars = {};
+    
+      for (var i = 0; i < arr.length; i++) {
+        s = arr[i].toString();
+        for (var j = 0; j < s.length; j++) {
+          if (s[j]=='0') {
+            result = false;
+            break;
+          }
+          if (!(s[j] in chars)) {
+            chars[s[j]] = 1;
+          }
+          else {
+            result = false;
+            break;
+          }
+        }
+      }
+    
+    
+      return result;
 }
 
 

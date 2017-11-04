@@ -4,13 +4,15 @@
   "description": "Run: ``` $ node [number].js ``` Problems 18-19 should be run like: ``` $ webpack && node bundle.js ```",
   "main": "bundle.js",
   "dependencies": {
-    "big-integer": "^1.6.15",
+    "big-integer": "^1.6.25",
     "fraction.js": "^3.3.1",
     "fractional": "^1.0.0",
+    "javascript-astar": "^0.4.1",
     "mathjs": "^3.5.1",
     "nomar": "^1.1.0",
     "roman-numeral-converter": "^1.0.1",
-    "roman-numeral-converter-mmxvi": "^1.0.5"
+    "roman-numeral-converter-mmxvi": "^1.0.5",
+    "sudoku-solver-js": "^0.1.2"
   },
   "devDependencies": {
     "eslint": "^2.11.1",

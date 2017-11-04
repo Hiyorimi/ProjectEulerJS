@@ -17,56 +17,6 @@ Problem38.prototype.constructor = Problem38;
 
 
 /**
- * isPandigital(arr) returns true if all digits are different and are in range 1-9
- *
- * @param {Object} arr of 9 numbers. C
- * @return {Bool} result
- */
-Problem38.prototype.isPandigital = function (arr) {
-
-  if (arr.length != 9)
-    return false;
-
-  var result = true;
-  var s = '';
-  var chars = {};
-
-  for (var i = 0; i < arr.length; i++) {
-    s = arr[i].toString();
-    for (var j = 0; j < s.length; j++) {
-      if (s[j]=='0') {
-        result = false;
-        break;
-      }
-      if (!(s[j] in chars)) {
-        chars[s[j]] = 1;
-      }
-      else {
-        result = false;
-        break;
-      }
-    }
-  }
-
-
-  return result;
-}
-
-
-/**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem38.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
-}
-
-
-/**
  * multiplyByXRange(n, maximum) returns array (1 * n, .., maximum * n)
  *
  * @param {Int} n - number to multiply by
