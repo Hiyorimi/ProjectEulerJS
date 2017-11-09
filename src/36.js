@@ -15,16 +15,6 @@ function Problem36 (problem_text, input_arguments) {
 Problem36.prototype = Object.create(Problem.prototype);
 Problem36.prototype.constructor = Problem36;
 
-/**
- * isPalindrom() is a function for checking if input string is palindrom
- *
- * @param {String} str - input string
- * @return {Bool} 
- */
-Problem36.prototype.isPalindrom = function (str) {
-    return str == str.split('').reverse().join('');
-}
-
 Problem36.prototype.getSolution = function () {
     var sum = 0;
 

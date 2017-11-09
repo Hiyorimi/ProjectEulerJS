@@ -39,25 +39,6 @@ Problem55.prototype.reverseDigits = function(number_as_array) {
     return bigInt(number_as_array.reverse().join(''));
 }
 
-/**
- * isPalindromic (number) checks if number is palindromic
- *
- * @param {BigInt} number
- * @return {Boolean} result
- */
-Problem55.prototype.isPalindromic = function(number) {
-    let number_as_array = this.getDigits(number);
-    let number_length = number_as_array.length-1;
-    let result = true;
-    for (let i = 0; i <= Math.ceil(number_length/2); i++) {
-        if (number_as_array[i]!=number_as_array[number_length-i]) {
-            result = false;
-            break;
-        }
-    }
-    
-    return result;
-}
 
 
 /**
@@ -83,7 +64,7 @@ Problem55.prototype.isLychrel = function(number) {
     let current_number = bigInt(number);
     for (let i = 0; i < 50; i++) {
         current_number = this.addReversed(current_number);
-        if (this.isPalindromic(current_number)) {
+        if (this.isPalindrom(current_number.toString())) {
             result = false;
             break;
         }

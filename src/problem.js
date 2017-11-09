@@ -464,6 +464,16 @@ Problem.prototype.isSquare = function (square) {
     }
 }
 
+/**
+ * isPalindrom() is a function for checking if input string is palindrom
+ *
+ * @param {String} str - input string
+ * @return {Bool} 
+ */
+Problem.prototype.isPalindrom = function (str) {
+    return str == str.split('').reverse().join('');
+}
+
 
 module.exports = new Problem();
 module.exports.Problem = Problem;
