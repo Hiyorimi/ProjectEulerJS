@@ -9,7 +9,11 @@ function Problem90 (problem_text, input_arguments) {
 Problem90.prototype = Object.create(Problem.prototype);
 Problem90.prototype.constructor = Problem90;
 
-
+/**
+ * areValidCombinations() checks if combinations are valid in terms of a problem
+ *
+ * @return {Bool} result
+ */
 Problem90.prototype.areValidCombinations = function (d1, d2) {
   let combs = [ [0, 1], [0, 4], [0,6], [1,6], [2,5], [3,6], [4,6], [6,4], [8,1] ];
 

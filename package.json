@@ -10,8 +10,10 @@
     "javascript-astar": "^0.4.1",
     "mathjs": "^3.5.1",
     "nomar": "^1.1.0",
+    "regression": "^2.0.0",
     "roman-numeral-converter": "^1.0.1",
     "roman-numeral-converter-mmxvi": "^1.0.5",
+    "sprintf-js": "^1.1.1",
     "sudoku-solver-js": "^0.1.2"
   },
   "devDependencies": {

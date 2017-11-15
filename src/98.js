@@ -17,6 +17,13 @@ Problem98.prototype.getHash = function (word) {
   return word.split("").sort().join("");
 }
 
+/**
+ * getNumericalRepresentation(word, coding) codes the word
+ *
+ * @param {Object} word
+ * @param {Object} coding - encoding
+ * @return {Int} number_from_word
+ */
 Problem98.prototype.getNumericalRepresentation = function (word, coding) {
     let number_from_word = '';
     for (let i = 0; i < word.length; i++) {
@@ -25,6 +32,14 @@ Problem98.prototype.getNumericalRepresentation = function (word, coding) {
     return parseInt(number_from_word);
 }
 
+
+/**
+ * getWordCoding(unique_word, permutation) returns encoding of the word
+ *
+ * @param {Object} unique_word
+ * @param {Object} permutation - encodes the word
+ * @return {Object} coding
+ */
 Problem98.prototype.getWordCoding = function (unique_word, permutation) {
     let coding = {};
     for (let i = 0; i < unique_word.length; i++) {
@@ -33,6 +48,16 @@ Problem98.prototype.getWordCoding = function (unique_word, permutation) {
     return coding;
 }
 
+
+/**
+ * getMaximumSquare(word_a, word_b, maximum_square) returns maximum square,
+ * based on the word
+ *
+ * @param {String} word_a
+ * @param {String} word_b
+ * @param {Int} maximum_square
+ * @return {Int} _maximum_square
+ */
 Problem98.prototype.getMaximumSquare = function (word_a, word_b, maximum_square) {
     // Initiation
     let unique_word = this.getUniqueString(word_a);

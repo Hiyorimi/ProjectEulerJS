@@ -10,15 +10,31 @@ function Problem102 (problem_text, input_arguments) {
 Problem102.prototype = Object.create(Problem.prototype);
 Problem102.prototype.constructor = Problem102;
 
+
+/**
+ * getLineLength(point_A, point_B) calculates length of a line between two points
+ *
+ * @param {Object} point_A
+ * @param {Object} point_B
+ * @return {Float} length
+ */
 Problem102.prototype.getLineLength = function (p1, p2) {
   return Math.sqrt( Math.pow(p2[0]-p1[0], 2) + Math.pow(p2[1]-p1[1], 2) );
 }
 
+/**
+ * getTriangleArea(point_A, point_B, point_C) calculates triangle area
+ * using the Heron's formula, based on 3 points
+ *
+ * @param {Object} point_A
+ * @param {Object} point_B
+ * @param {Object} point_C
+ * @return {Float} area
+ */
 Problem102.prototype.getTriangleArea  = function (point_A, point_B, point_C) {
   let AB = this.getLineLength(point_A, point_B),
       BC = this.getLineLength(point_B, point_C),
       CA = this.getLineLength(point_C, point_A);
-  console.log(AB, BC, CA);
   let s = (AB + BC + CA) / 2; // semiperimeter
   
 
@@ -27,6 +43,17 @@ Problem102.prototype.getTriangleArea  = function (point_A, point_B, point_C) {
   return area;
 }
 
+
+/**
+ * triangleContainsPoint(point_A, point_B, point_C, point_X) checks if triangle contains
+ * a point, by calculating the area of 4 triangles
+ *
+ * @param {Object} point_A
+ * @param {Object} point_B
+ * @param {Object} point_C
+ * @param {Object} point_X
+ * @return {Bool} result
+ */
 Problem102.prototype.triangleContainsPoint  = function (point_A, point_B, point_C, point_X) {
   let area_ABX = this.getTriangleArea(point_A, point_B, point_X),
       area_BCX = this.getTriangleArea(point_B, point_C, point_X),

@@ -13,10 +13,9 @@ Problem112.prototype.constructor = Problem112;
 
 
 /**
- * squareRoot(n) returns 100 digits of sqaure root of n
- * by http://www.afjarvis.staff.shef.ac.uk/maths/jarvisspec02.pdf
+ * isBouncy(n) checks if number is bouncy
  * 
- * @param {Int} n
+ * @param {Int} i
  * @return {Array} result
  */
 Problem112.prototype.isBouncy = function (i) {
