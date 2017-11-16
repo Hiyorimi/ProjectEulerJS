@@ -42,7 +42,7 @@ Problem93.prototype.getSolution = function () {
   let result = 0;
   let result_length = 0;
 
-  let all_combinations = this.k_combinations([0,1,2,3,4,5,6,7,8,9], 4);
+  let all_combinations = this.kCombinations([0,1,2,3,4,5,6,7,8,9], 4);
   let combinations = all_combinations.map ( (elem) => {
     return elem.sort();
   });

@@ -32,7 +32,7 @@ Problem20.prototype.getSolution = function () {
    var factorial = this.factorial(100);
    var factorial_string  = BigInt.bigInt2str(factorial,10).split('');
    for ( var number in factorial_string ) {
-      sum += parseInt(factorial_string[i]);
+      sum += parseInt(factorial_string[number]);
    }
 
    return sum;

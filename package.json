@@ -4,7 +4,9 @@
   "description": "Run: ``` $ node [number].js ``` Problems 18-19 should be run like: ``` $ webpack && node bundle.js ```",
   "main": "bundle.js",
   "dependencies": {
+    "BigInt": "^5.5.3",
     "big-integer": "^1.6.25",
+    "fraction": "^0.2.0",
     "fraction.js": "^3.3.1",
     "fractional": "^1.0.0",
     "javascript-astar": "^0.4.1",

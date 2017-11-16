@@ -14,7 +14,7 @@ function Problem (problem_text, input_arguments) {
   this._arguments = input_arguments; 
   this.cached_factorials = [1,1,2];
   for (var i=3; i < 10; i++)
-    this.cached_factorials.push(this.Factorial(i));
+    this.cached_factorials.push(this.factorial(i));
 }
 
 
@@ -49,12 +49,12 @@ Problem.prototype.solve = function () {
 
 
 /**
- * is_prime(number) checks if number is a prime
+ * isPrime(number) checks if number is a prime
  *
  * @param {Int} number
  * @return {Int} denominator or false
  */
-Problem.prototype.is_prime = function (number) {
+Problem.prototype.isPrime = function (number) {
     var start = 2;
     while (start <= Math.sqrt(number)) {
         if (number % start++ < 1) return false;
@@ -63,12 +63,12 @@ Problem.prototype.is_prime = function (number) {
 }
 
 /**
- * Factorial(n) returns n!
+ * factorial(n) returns n!
  *
  * @param {Int} n
  * @return {Int} n!
  */
-Problem.prototype.Factorial = function (n) {
+Problem.prototype.factorial = function (n) {
     var result = 1
 
     if ( n<=1 ) { 
@@ -101,7 +101,7 @@ Problem.prototype.getDigitsFactorialSum = function (digits) {
 }
 
 /**
- * getCachedFactorialSum(digits) sum of factorials of digits
+ * getCachedfactorialSum(digits) sum of factorials of digits
  *
  * @param {Array} digits
  * @return {Int} sum
@@ -481,7 +481,7 @@ Problem.prototype.isPalindrom = function (str) {
  * Get k-sized combinations of elements in a set.
  * 
  * Usage:
- *   k_combinations(set, k)
+ *   kCombinations(set, k)
  * 
  * Parameters:
  *   set: Array of objects of any type. They are treated as unique.
@@ -492,28 +492,28 @@ Problem.prototype.isPalindrom = function (str) {
  * 
  * Examples:
  * 
- *   k_combinations([1, 2, 3], 1)
+ *   kCombinations([1, 2, 3], 1)
  *   -> [[1], [2], [3]]
  * 
- *   k_combinations([1, 2, 3], 2)
+ *   kCombinations([1, 2, 3], 2)
  *   -> [[1,2], [1,3], [2, 3]
  * 
- *   k_combinations([1, 2, 3], 3)
+ *   kCombinations([1, 2, 3], 3)
  *   -> [[1, 2, 3]]
  * 
- *   k_combinations([1, 2, 3], 4)
+ *   kCombinations([1, 2, 3], 4)
  *   -> []
  * 
- *   k_combinations([1, 2, 3], 0)
+ *   kCombinations([1, 2, 3], 0)
  *   -> []
  * 
- *   k_combinations([1, 2, 3], -1)
+ *   kCombinations([1, 2, 3], -1)
  *   -> []
  * 
- *   k_combinations([], 0)
+ *   kCombinations([], 0)
  *   -> []
  */
-Problem.prototype.k_combinations = function (set, k) {
+Problem.prototype.kCombinations = function (set, k) {
     var i, j, combs, head, tailcombs;
     // There is no way to take e.g. sets of 5 elements from
     // a set of 4.
@@ -555,7 +555,7 @@ Problem.prototype.k_combinations = function (set, k) {
     // head is a list that includes only our current element.
             head = set.slice(i, i + 1);
     // We take smaller combinations from the subsequent elements
-            tailcombs = this.k_combinations(set.slice(i + 1), k - 1);
+            tailcombs = this.kCombinations(set.slice(i + 1), k - 1);
     // For each (k-1)-combination we join it with the current
     // and store it to the set of k-combinations.
     for (j = 0; j < tailcombs.length; j++) {
