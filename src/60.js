@@ -22,8 +22,8 @@ Problem60.prototype.constructor = Problem60;
  */
 Problem60.prototype.satisfies = function (p, set) {
   for (let i = 0; i < set.length; ++i) {
-        if (!(this.is_prime(parseInt("" + p + set[i] )) && 
-        this.is_prime(parseInt("" + set[i] + p)) ))
+        if (!(this.isPrime(parseInt("" + p + set[i] )) && 
+        this.isPrime(parseInt("" + set[i] + p)) ))
             return false;
         
     }

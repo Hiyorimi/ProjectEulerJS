@@ -13,12 +13,12 @@ Problem58.prototype.constructor = Problem58;
 
 
 /**
- * is_prime(number) checks if number is a prime
+ * isPrime(number) checks if number is a prime
  *
  * @param {Int} number
  * @return {Int} denominator
  */
-Problem58.prototype.is_prime = function (number) {
+Problem58.prototype.isPrime = function (number) {
     var start = 2;
     while (start <= Math.sqrt(number)) {
         if (number % start++ < 1) return false;
@@ -44,7 +44,7 @@ Problem58.prototype.getSolution = function () {
           prime = prime.add(side_length);
           // We can only count number of primes, there is no need of 
           // storing any of them
-          if(this.is_prime(prime)) number_of_primes++;
+          if(this.isPrime(prime)) number_of_primes++;
       }
       prime = prime.add(side_length);
   }
