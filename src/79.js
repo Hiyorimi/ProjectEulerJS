@@ -13,17 +13,6 @@ Problem79.prototype = Object.create(Problem.prototype);
 Problem79.prototype.constructor = Problem79;
 
 
-/**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem79.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
-}
 
 /**
  * check_order(result, digits) checks if the order is ok
@@ -60,9 +49,11 @@ Problem79.prototype.check_order = function (result,digits) {
  */
 Problem79.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
-  let file_contents = fs.readFileSync('p079_keylog.txt');
+  let file_contents = fs.readFileSync(__dirname + '/p079_keylog.txt');
   let strings = file_contents.toString().split('\n');
   let result = [];
   for (let i = 0; i < strings.length; i++) {
@@ -70,7 +61,10 @@ Problem79.prototype.getSolution = function () {
     result = this.check_order(result,digits);
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
+
 
   return result.join('');
 }
@@ -92,4 +86,8 @@ var problem = new Problem79(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+  problem.solve();
+} else {
+  module.exports.Problem79 = Problem79;
+}

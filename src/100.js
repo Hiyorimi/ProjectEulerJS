@@ -20,7 +20,9 @@ Problem100.prototype.constructor = Problem100;
  */
 Problem100.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+      console.time("Bruteforce");
+  }
 
   let b = bigInt('15'),
       n = bigInt('21'),
@@ -34,13 +36,14 @@ Problem100.prototype.getSolution = function () {
     b_t = ((b.multiply(3)).add(n.multiply(2))).subtract(2);
     // n_t = 4 * b + 3 * n - 3
     n_t = (b.multiply(4)).add(n.multiply(3)).subtract(3);
-    console.log(b_t, n_t);
 
     b = b_t;
     n = n_t;
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+      console.timeEnd("Bruteforce");
+  }
 
   return b_t;
 }
@@ -62,5 +65,10 @@ contain.`;
 var problem = new Problem100(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.Problem100 = Problem100;
+}
 
-problem.solve();
+

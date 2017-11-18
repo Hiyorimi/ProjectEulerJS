@@ -34,7 +34,7 @@ Problem59.prototype.getSolution = function () {
 
   console.time("Bruteforce");
 
-  let file_contents = fs.readFileSync('p059_cipher.txt');
+  let file_contents = fs.readFileSync(__dirname + '/p059_cipher.txt');
   let numbers = file_contents.toString().split(',');
   let message_length = numbers.length;
   let cipthertext = numbers.map(function (x) {

@@ -25,7 +25,7 @@ Problem81.prototype = Object.create(Problem.prototype);
 Problem81.prototype.constructor = Problem81;
 Problem81.prototype.getSolution = function () {
     
-  let matrix = fs.readFileSync(__dirname + 'p081_matrix.txt');
+  let matrix = fs.readFileSync(__dirname + '/p081_matrix.txt');
   let grid = [];
 
   console.time("Bruteforce");

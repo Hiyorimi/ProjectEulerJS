@@ -14,7 +14,7 @@ Problem96.prototype.constructor = Problem96;
 
 Problem96.prototype.getSolution = function () {
     
-  let file = fs.readFileSync('./src/p096_sudoku.txt');
+  let file = fs.readFileSync(__dirname + '/p096_sudoku.txt');
   let solver = new SudokuSolver();
   let lines = file.toString().split('\n');
   let puzzle = '',

@@ -22,7 +22,7 @@ Problem99.prototype.getSolution = function () {
 
   console.time("Bruteforce");
 
-  let file_contents = fs.readFileSync('p099_base_exp.txt');
+  let file_contents = fs.readFileSync(__dirname + '/p099_base_exp.txt');
   let strings = file_contents.toString().split('\n');
   let base = 1;
   let exponent = 1;

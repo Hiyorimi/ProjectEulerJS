@@ -13,20 +13,9 @@ Problem80.prototype = Object.create(Problem.prototype);
 Problem80.prototype.constructor = Problem80;
 
 
-/**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem80.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
-}
 
 /**
- * squareRoot(n) returns 100 digits of sqaure root of n
+ * squareRoot(n) returns 100 digits of square root of n
  * by http://www.afjarvis.staff.shef.ac.uk/maths/jarvisspec02.pdf
  * 
  * @param {Int} n
@@ -60,7 +49,10 @@ Problem80.prototype.squareRoot = function (n) {
  */
 Problem80.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+        console.time("Bruteforce");
+  }
+
   let j = 1,
       result = 0;
   for (let i = 1; i <= 100; i++) {
@@ -74,7 +66,9 @@ Problem80.prototype.getSolution = function () {
       },0);
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }
@@ -95,5 +89,8 @@ the digital sums of the first one hundred decimal digits for all
 var problem = new Problem80(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
-
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.Problem80 = Problem80;
+}

@@ -11,7 +11,7 @@ Problem89.prototype.constructor = Problem89;
 Problem89.prototype.getSolution = function () {
 
     let toRoman = require('roman-numeral-converter-mmxvi');
-    let file_contents = fs.readFileSync('p089_roman.txt');
+    let file_contents = fs.readFileSync(__dirname + '/p089_roman.txt');
     let strings = file_contents.toString().split('\n');
     let number_of_characters = 0;
     for (let i = 0; i < strings.length; i++) {

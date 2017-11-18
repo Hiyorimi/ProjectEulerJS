@@ -18,7 +18,11 @@ Problem87.prototype.constructor = Problem87;
  */
 Problem87.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+
+  if (require.main === module) {
+        console.time("Bruteforce");
+  }
+
 
   let limit = 50000000,
       number = 0,
@@ -41,8 +45,9 @@ Problem87.prototype.getSolution = function () {
       }
   }
   
-
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }
@@ -64,4 +69,9 @@ prime square, prime cube, and prime fourth power?`;
 var problem = new Problem87(problem_text, process.argv.splice(2,process.argv.length-1));
 
 
-problem.solve();
+
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.Problem87 = Problem87;
+}

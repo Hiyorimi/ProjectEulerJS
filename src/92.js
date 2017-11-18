@@ -13,19 +13,7 @@ Problem92.prototype.constructor = Problem92;
 
 
 /**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem92.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
-}
-
-/**
- * getNextChainElement(n) returns next chain element
+ * getDigitsSquare(n) returns squared digits sum
  *
  * @param {Int} n
  * @return {Int} result

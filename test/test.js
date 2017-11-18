@@ -56,4 +56,30 @@ describe('Problem', function() {
     });
   });
 
+  describe('#Testing solution of 79th problem', function () {
+    it('should return 73162890 for 79 problem', function () {
+        let Problem = require('../src/79').Problem79;
+        var problem = new Problem;
+        assert.equal(73162890,problem.getSolution());
+    });
+  });
+
+  describe('#Testing solution of 87th problem', function () {
+    it('should return 1097343 for 87 problem', function () {
+        let Problem = require('../src/87').Problem87;
+        var problem = new Problem;
+        assert.equal(1097343,problem.getSolution());
+    });
+  });
+
+
+
+  describe('#Testing solution of 100th problem', function () {
+    it('should return 756872327473 for 100th problem', function () {
+        let Problem100 = require('../src/100').Problem100;
+        var problem = new Problem100;
+        assert.equal(756872327473,problem.getSolution());
+    });
+  });
+
 });

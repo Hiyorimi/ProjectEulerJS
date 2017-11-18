@@ -1,5 +1,3 @@
-O
-
 /**
  * Sets Problem
  * @class Class for projecteuler problem. input_arguments 

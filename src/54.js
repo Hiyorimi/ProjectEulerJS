@@ -356,7 +356,7 @@ Problem54.prototype.getSolution = function () {
     
 
     let fs = require('fs');
-    let file_contents = fs.readFileSync('p054_poker.txt');
+    let file_contents = fs.readFileSync(__dirname + '/p054_poker.txt');
 
     console.time("Bruteforce");
     let strings = file_contents.toString().split('\n');

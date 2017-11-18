@@ -12,7 +12,7 @@ Problem67.prototype.constructor = Problem67;
 Problem67.prototype.getSolution = function () {
 
     let data = [];
-    let file_contents = fs.readFileSync('p067_triangle.txt');
+    let file_contents = fs.readFileSync(__dirname + '/p067_triangle.txt');
     let strings = file_contents.toString().split('\n');
     for (let i = 0; i < strings.length; i++) {
         data.push(strings[i].split(' ').map( function (elem) {;
