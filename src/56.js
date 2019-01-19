@@ -17,28 +17,7 @@ function Problem56 (problem_text, input_arguments) {
 Problem56.prototype = Object.create(Problem.prototype);
 Problem56.prototype.constructor = Problem56;
 
-/**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem56.prototype.getDigits = function (n) {
-  return n.toString().split('').map( (elem) => {
-    return +elem;
-  });
-}
 
-/**
- * sumDigits(number) returns sum of all digits of the number
- *
- * @param {BigInt} number
- * @return {Int} result
- */
-Problem56.prototype.sumDigits = function(number) {
-    let number_as_array = this.getDigits(number);
-    return number_as_array.reduce( (sum, elem) => {return sum+elem; });
-}
 
 /**
  * power(number) returns base taken to the power
@@ -58,7 +37,9 @@ bigInt.power = function (base, power) {
 
 Problem56.prototype.getSolution = function () {
 
-    console.time("Bruteforce");
+    if (require.main === module) {
+        console.time("Bruteforce");
+      }
 
     let powered_number = bigInt(0);
     let digits_sum = 0, powered_number_digits_sum = 0;
@@ -75,7 +56,9 @@ Problem56.prototype.getSolution = function () {
     }
 
 
-    console.timeEnd("Bruteforce");
+    if (require.main === module) {
+        console.timeEnd("Bruteforce");
+      }
 
     return digits_sum;
 }
@@ -89,4 +72,8 @@ Considering natural numbers of the form, ab, where a, b < 100, what is the maxim
 
 let problem = new Problem56(problem_text, process.argv.splice(2,process.argv.length-1));
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.Problem56 = Problem56;
+}

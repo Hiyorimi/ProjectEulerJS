@@ -126,6 +126,18 @@ Problem.prototype.getDigits = function (n) {
   });
 }
 
+
+/**
+ * sumDigits(number) returns sum of all digits of the number
+ *
+ * @param {BigInt} number
+ * @return {Int} result
+ */
+Problem.prototype.sumDigits = function(number) {
+    let number_as_array = this.getDigits(number);
+    return number_as_array.reduce( (sum, elem) => {return sum+elem; });
+}
+
 /**
  * getRandomIntInclusive(n) returns random Int [min, max]
  *

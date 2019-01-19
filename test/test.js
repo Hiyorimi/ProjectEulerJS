@@ -1,6 +1,7 @@
 'use strict'
 
 var assert = require('assert');
+let bigInt = require("big-integer");
 let Problem = require('../src/problem').Problem;
 
 describe('Problem', function() {
@@ -38,7 +39,7 @@ describe('Problem', function() {
       assert.equal(true,problem.isPrime(17));
     });
 
-    it('should return fale for 4,6,100', function() {
+    it('should return false for 4,6,100', function() {
       var problem = new Problem("test problem");
       assert.equal(false,problem.isPrime(4));
       assert.equal(false,problem.isPrime(6));
@@ -53,6 +54,15 @@ describe('Problem', function() {
       assert.equal(3628800,problem.factorial(10));
       assert.equal(1,problem.factorial(1));
       assert.equal(1,problem.factorial(-1));
+    });
+  });
+
+
+  describe('#Testing solution of 56th problem', function () {
+    it('should return 972 for 56 problem', function () {
+        let Problem = require('../src/56').Problem56;
+        var problem = new Problem;
+        assert.equal(972 ,problem.getSolution());
     });
   });
 
@@ -79,6 +89,14 @@ describe('Problem', function() {
         let Problem100 = require('../src/100').Problem100;
         var problem = new Problem100;
         assert.equal(756872327473,problem.getSolution());
+    });
+  });
+
+  describe('#Testing solution of 119th problem', function () {
+    it('should return 248155780267521 for 119th problem', function () {
+        let Problem119 = require('../src/119').Problem119;
+        var problem = new Problem119;
+        assert.equal(bigInt('248155780267521').toString(),problem.getSolution().toString());
     });
   });
 
