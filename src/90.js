@@ -38,10 +38,12 @@ Problem90.prototype.areValidCombinations = function (d1, d2) {
  */
 Problem90.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let result = 0;
-  let combinations = this.k_combinations([0,1,2,3,4,5,6,7,8,9], 6);
+  let combinations = this.kCombinations([0,1,2,3,4,5,6,7,8,9], 6);
   for (let i = 0; i < combinations.length; i++) {
     let c1 = combinations[i].sort();
     if (c1[c1.length - 1] == 9)
@@ -52,14 +54,15 @@ Problem90.prototype.getSolution = function () {
       let c2 = combinations[j].sort();
       if (c2[c2.length - 1] == 9) {
         c2[c2.length - 1] = 6;
-        console.log(c2);
       }
       if (this.areValidCombinations(c1,c2))
         result++;
     }
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }
@@ -71,4 +74,8 @@ var problem = new Problem90(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem90;
+}

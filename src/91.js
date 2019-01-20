@@ -18,7 +18,9 @@ Problem91.prototype.constructor = Problem91;
  */
 Problem91.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let size = 50;
   let result = size*size*3;
@@ -29,7 +31,9 @@ Problem91.prototype.getSolution = function () {
       }
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }
@@ -41,4 +45,8 @@ var problem = new Problem91(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem91;
+}

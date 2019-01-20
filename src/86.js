@@ -18,8 +18,6 @@ Problem86.prototype.constructor = Problem86;
  */
 Problem86.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
-
   let l = 2;
   let count = 0;
   let wh = 0
@@ -35,8 +33,6 @@ Problem86.prototype.getSolution = function () {
     }
   }
 
-  console.timeEnd("Bruteforce");
-
   return (wh-1)/2;
 }
 
@@ -47,4 +43,8 @@ var problem = new Problem86(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.SolvedProblem = Problem86;
+}

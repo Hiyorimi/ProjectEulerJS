@@ -45,4 +45,8 @@ Note: You can assume that all the Roman numerals in the file contain no more tha
 
 var problem = new Problem89(problem_text);
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.SolvedProblem = Problem89;
+}

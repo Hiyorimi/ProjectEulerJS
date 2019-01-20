@@ -3,22 +3,19 @@
 let fs = require('fs');
 let Problem = require('./problem').Problem;
 
-function Problem83 (problem_text, input_arguments) {
+function Problem84 (problem_text, input_arguments) {
   Problem.apply(this, arguments);
 }
 
-Problem83.prototype = Object.create(Problem.prototype);
-Problem83.prototype.constructor = Problem83;
+Problem84.prototype = Object.create(Problem.prototype);
+Problem84.prototype.constructor = Problem84;
 
 
 
 
-Problem83.prototype.getSolution = function () {
+Problem84.prototype.getSolution = function () {
     
   
-
-  console.time("Bruteforce");
-
   let board = {};
   let modalstring = "";
   let samples = 1000000;
@@ -110,14 +107,17 @@ Problem83.prototype.getSolution = function () {
       modalstring += top_3_fields[i][0].toString();
   }
 
-  console.timeEnd("Bruteforce");
-
   return modalstring;
 }
 
 var problem_text = `
 https://projecteuler.net/problem=84`;
 
-var problem = new Problem83(problem_text);
+var problem = new Problem84(problem_text);
 
-problem.solve();
+
+if (require.main === module) {
+  problem.solve();
+} else {
+  module.exports.SolvedProblem = Problem84;
+}

@@ -20,7 +20,6 @@ Problem83.prototype.getSolution = function () {
   let grid = [];
   let result = 0;
 
-  console.time("Bruteforce");
 
   for (let i = 0; i < 80; i++) {
     let row = matrix.toString().split('\n')[i];
@@ -39,8 +38,6 @@ Problem83.prototype.getSolution = function () {
   }
 
 
-  console.timeEnd("Bruteforce");
-
   return result;
 }
 
@@ -56,4 +53,9 @@ Find the minimal path sum, in matrix.txt (right click and
 
 var problem = new Problem83(problem_text);
 
-problem.solve();
+
+if (require.main === module) {
+  problem.solve();
+} else {
+  module.exports.SolvedProblem = Problem83;
+}

@@ -73,5 +73,5 @@ var problem = new Problem87(problem_text, process.argv.splice(2,process.argv.len
 if (require.main === module) {
     problem.solve();
 } else {
-    module.exports.Problem87 = Problem87;
+    module.exports.SolvedProblem = Problem87;
 }

@@ -19,7 +19,9 @@ Problem85.prototype.constructor = Problem85;
  */
 Problem85.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let area = 6;
   let target_number = 2000000;
@@ -45,11 +47,15 @@ Problem85.prototype.getSolution = function () {
       }
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   // Combinatoric solution from 
   // http://www.mathblog.dk/project-euler-85-rectangles-rectangular-grid/
-  console.time("Combinatoric");
+  if (require.main === module) {
+    console.time("Combinatoric");
+  }
     let error = 200000;
     area = 0;
     
@@ -69,7 +75,10 @@ Problem85.prototype.getSolution = function () {
         else
             y++;
     }
-  console.timeEnd("Combinatoric");
+
+  if (require.main === module) {
+    console.timeEnd("Combinatoric");
+  }
 
 
   return area;
@@ -87,4 +96,8 @@ var problem = new Problem85(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.SolvedProblem = Problem85;
+}

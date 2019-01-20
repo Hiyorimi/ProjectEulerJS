@@ -20,7 +20,9 @@ function unique(array) {
 
 Problem88.prototype.getSolution = function () {
     
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let max_k = 12000;
   let max_number = 2 * max_k;
@@ -82,7 +84,9 @@ Problem88.prototype.getSolution = function () {
 
     let k_unique = unique(k);
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return k_unique.reduce(function (a, b) {
     return a + b;
@@ -110,4 +114,9 @@ What is the sum of all the minimal product-sum numbers for 2≤k≤12000?`;
 
 var problem = new Problem88(problem_text);
 
-console.log (problem.solve());
+
+if (require.main === module) {
+    problem.solve();
+} else {
+    module.exports.SolvedProblem = Problem88;
+}

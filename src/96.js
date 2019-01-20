@@ -21,7 +21,9 @@ Problem96.prototype.getSolution = function () {
       answer = '',
       result = 0;
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   for (let i = 0; i < lines.length; i++) {
     let row = lines[i];
@@ -37,7 +39,9 @@ Problem96.prototype.getSolution = function () {
   }
 
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }
@@ -68,4 +72,9 @@ found in the top left corner of the solution grid above.`;
 
 var problem = new Problem96(problem_text);
 
-problem.solve();
+
+if (require.main === module) {
+  problem.solve();
+} else {
+  module.exports.SolvedProblem = Problem96;
+}

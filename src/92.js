@@ -31,7 +31,9 @@ Problem92.prototype.getDigitsSquare = function (n) {
  */
 Problem92.prototype.getSolution = function () {
 
-  console.time("Caching");
+  if (require.main === module) {
+    console.time("Caching");
+  }
 
   let limit = 10000000;
   let cache = [];
@@ -62,7 +64,9 @@ Problem92.prototype.getSolution = function () {
         result++;
   }
 
-  console.timeEnd("Caching");
+  if (require.main === module) {
+    console.timeEnd("Caching");
+  }
 
   return result;
 }
@@ -87,4 +91,8 @@ var problem = new Problem92(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem92;
+}

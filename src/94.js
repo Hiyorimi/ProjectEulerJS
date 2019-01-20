@@ -20,8 +20,9 @@ Problem94.prototype.constructor = Problem94;
  */
 Problem94.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
-
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
   let side0 = bigInt(1),
       side = bigInt(1),
       side_t = bigInt(1),
@@ -41,7 +42,9 @@ Problem94.prototype.getSolution = function () {
     p = side.multiply(3).subtract(m);
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return s;
 }
@@ -63,4 +66,8 @@ var problem = new Problem94(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+  if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem94;
+}

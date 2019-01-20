@@ -28,3 +28,10 @@ function solve () {
 }
 
 console.log (solve());
+
+
+if (require.main === module) {
+  solve();
+} else {
+  module.exports.SolvedProblem = solution();
+}

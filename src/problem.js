@@ -41,7 +41,9 @@ Problem.prototype.getSolution = function () {
  * @return {Int} 0
  */
 Problem.prototype.solve = function () {
-  console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
+  if (require.main === module) {
+    console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
+  }
   return 0; 
 }
 
@@ -117,20 +119,23 @@ Problem.prototype.getCachedFactorialSum = function (digits) {
 /**
  * getDigits(n) returns digits of input number
  *
- * @param {Int} n
+ * @param {Int-like} n
  * @return {Array} digits
  */
 Problem.prototype.getDigits = function (n) {
-  return n.toString().split('').map(function (elem) {
-    return +elem;
-  });
+    digits = n
+    if (parseInt(n) < 0)
+        digits = (-1 * parseInt(n)).toString()
+    return digits.toString().split('').map(function (elem) {
+        return +elem;
+    });
 }
 
 
 /**
  * sumDigits(number) returns sum of all digits of the number
  *
- * @param {BigInt} number
+ * @param {Int-like} number
  * @return {Int} result
  */
 Problem.prototype.sumDigits = function(number) {

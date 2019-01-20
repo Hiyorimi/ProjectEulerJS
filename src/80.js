@@ -89,8 +89,9 @@ the digital sums of the first one hundred decimal digits for all
 var problem = new Problem80(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
+
 if (require.main === module) {
     problem.solve();
 } else {
-    module.exports.Problem80 = Problem80;
+    module.exports.SolvedProblem = Problem80;
 }

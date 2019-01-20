@@ -52,7 +52,9 @@ Problem95.prototype.sumProperFactors = function (initial_number) {
  */
 Problem95.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let chains = {};
   let longest_chain_length = 0,
@@ -97,8 +99,10 @@ Problem95.prototype.getSolution = function () {
             chains[chain[j]] = true;
         }
   }
-  console.timeEnd("Bruteforce");
-
+  
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
   return smallest_number;
 }
 
@@ -127,4 +131,8 @@ var problem = new Problem95(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
 
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem95;
+}

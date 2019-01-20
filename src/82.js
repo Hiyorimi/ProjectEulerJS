@@ -16,7 +16,6 @@ Problem82.prototype.getSolution = function () {
   let matrix = fs.readFileSync(__dirname + '/p081_matrix.txt');
   let grid = [];
 
-  console.time("Bruteforce");
 
   for (let i = 0; i < 80; i++) {
     let row = matrix.toString().split('\n')[i];
@@ -53,7 +52,6 @@ Problem82.prototype.getSolution = function () {
   }
 
 
-  console.timeEnd("Bruteforce");
 
   return Math.min.apply(null, solution);
 }
@@ -72,4 +70,8 @@ from the left column to the right column.`;
 
 var problem = new Problem82(problem_text);
 
-problem.solve();
+if (require.main === module) {
+  problem.solve();
+} else {
+  module.exports.SolvedProblem = Problem82;
+}

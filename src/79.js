@@ -87,7 +87,7 @@ var problem = new Problem79(problem_text, process.argv.splice(
 
 
 if (require.main === module) {
-  problem.solve();
+    problem.solve();
 } else {
-  module.exports.Problem79 = Problem79;
+    module.exports.SolvedProblem = Problem79;
 }

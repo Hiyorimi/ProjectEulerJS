@@ -123,4 +123,8 @@ NOTE: All anagrams formed must be contained in the given text file.`;
 
 var problem = new Problem98(problem_text);
 
-console.log (problem.solve());
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem98;
+}

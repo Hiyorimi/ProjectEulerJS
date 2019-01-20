@@ -19,13 +19,17 @@ Problem97.prototype.constructor = Problem97;
  */
 Problem97.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let mod = 10000000000;
   let power = 7830457;
   let result = (28433 * bigInt(2).modPow(power,mod)+1) % (mod);
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }
@@ -45,5 +49,8 @@ Find the last ten digits of this prime number.`;
 var problem = new Problem97(problem_text, process.argv.splice(
   2,process.argv.length-1));
 
-
-problem.solve();
+if (require.main === module) {
+    problem.solve();
+  } else {
+    module.exports.SolvedProblem = Problem97;
+}
