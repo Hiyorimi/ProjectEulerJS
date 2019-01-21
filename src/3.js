@@ -1,38 +1,46 @@
 'use strict'
-var problem = `The prime factors of 13195 are 5, 7, 13 and 29.
+
+const Problem = require('./problem').Problem;
+
+function Problem3 (problem_text, input_arguments) {
+  Problem.apply(this, arguments);
+}
+
+Problem3.prototype = Object.create(Problem.prototype);
+Problem3.prototype.constructor = Problem3;
+
+const problem_text = `The prime factors of 13195 are 5, 7, 13 and 29.
 \n
 What is the largest prime factor of the number 600851475143 ?`
-console.log(problem);
 
 
-function solution() {
-  var result = 0;
+Problem3.prototype.getSolution = function () {
+  let result = 0;
+  let number = 600851475143;
+  const primes_less_than_number = this.sieveOfEratosthenes(8000);
+  const factors = [];
+  let d = 2;
 
-  var number = 600851475143;
- 
-  var primes_less_than_number = findAllPrimesLessThan(8000);
-
-  var factors = [];
-
-  var d = 2;
-
-  while (number>1) {
-    while (number % d ==0) {
+  while (number > 1) {
+    while (number % d === 0) {
       factors.push(d);
       number /= d;
     }
     d = d + 1;
-    if (d*d > number){ 
-      if (number>1) factors.push(number);
+    if (d * d > number) { 
+      if (number > 1) factors.push(number);
       break;
     }
   }
 
-  return factors;
+  result = factors[factors.length - 1];
+  return result;
 }
 
-function solve () {
-  return "Answer: " + solution();
-}
 
-console.log (solve());
+if (require.main === module) {
+  const problem = new Problem3(problem_text, process.argv.splice(2, process.argv.length - 1));
+  problem.solve();
+} else {
+  module.exports.SolvedProblem = Problem3;
+}

@@ -1,12 +1,12 @@
 /**
  * Sets Problem
- * @class Class for projecteuler problem. input_arguments 
- * 
+ * @class Class for projecteuler problem. input_arguments
+ *
  * @param {String} problem_text - Task as text
  * @param {Object} input_arguments - have default value for backward compatibility
- * @param {Object} arguments - Arguments array 
+ * @param {Object} arguments - Arguments array
  */
-function Problem (problem_text, input_arguments) {
+function Problem(problem_text, input_arguments) {
   input_arguments = typeof input_arguments !== 'undefined' ? input_arguments : NaN;
   this._problem_text = problem_text;
   this._arguments = input_arguments; 
@@ -327,18 +327,6 @@ Problem.prototype.gcd = function (a, b) {
 Problem.prototype.getProperDivisors = function (num) {
     return this.getDivisors(num, true);
 }
-
-
-/**
- * isPalindrom() is a function for checking if input string is palindrom
- *
- * @param {String} str - input string
- * @return {Bool} 
- */
-Problem.prototype.isPalindrom = function (str) {
-    return str == str.split('').reverse().join('');
-}
-
 
 
 /**
