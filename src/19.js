@@ -30,10 +30,16 @@ All the rest have thirty-one,
 Saving February alone,
 Which has twenty-eight, rain or shine.
 And on leap years, twenty-nine.
-A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+A leap year occurs on any year evenly divisible by 4, but not on a century unless it is 
+divisible by 400.
 \n
-How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?`;
+How many Sundays fell on the first of the month during the twentieth century 
+(1 Jan 1901 to 31 Dec 2000)?`;
 
-var problem = new Problem19(problem_text);
 
-console.log (problem.solve());
+if (require.main === module) {
+    const problem = new Problem19(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem19;
+}

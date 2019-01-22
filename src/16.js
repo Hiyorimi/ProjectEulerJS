@@ -1,24 +1,10 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
+const Problem = require('./problem').Problem;
 
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
-
-function Problem16 (problem_text) {
-  this._problem_text = problem_text;
-}
+function Problem16 (problem_text, input_arguments) {
+    Problem.apply(this, arguments);
+  }
 Problem16.prototype = Object.create(Problem.prototype);
 Problem16.prototype.constructor = Problem16;
 
@@ -59,6 +45,10 @@ var problem_text = `
 \n
 What is the sum of the digits of the number 2^1000?`;
 
-var problem = new Problem16(problem_text);
 
-console.log (problem.solve());
+if (require.main === module) {
+    const problem = new Problem16(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem16;
+}

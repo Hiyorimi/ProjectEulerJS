@@ -1,24 +1,10 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
+const Problem = require('./problem').Problem;
 
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
-
-function Problem15 (problem_text) {
-  this._problem_text = problem_text;
-}
+function Problem15 (problem_text, input_arguments) {
+    Problem.apply(this, arguments);
+  }
 Problem15.prototype = Object.create(Problem.prototype);
 Problem15.prototype.constructor = Problem15;
 
@@ -60,6 +46,10 @@ Starting in the top left corner of a 2×2 grid, and only being able to move to t
 \n\n
 How many such routes are there through a 20×20 grid?`;
 
-var problem = new Problem15(problem_text);
 
-console.log (problem.solve());
+if (require.main === module) {
+    const problem = new Problem15(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem15;
+}

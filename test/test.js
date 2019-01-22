@@ -154,17 +154,27 @@ describe('Problem', function() {
 
 describe('Problem solutions', function() {
 
-  describe('#Testing solutions of problems from 1 to 9', function () {
+  describe('#Testing solutions of problems from 1 to 19.', function () {
     let test_cases = [
       new ProjectEulerProblemTestCase(1, 233168),
       new ProjectEulerProblemTestCase(2, 4613732),
       new ProjectEulerProblemTestCase(3, 6857),
       new ProjectEulerProblemTestCase(4, 906609),
       new ProjectEulerProblemTestCase(5, 232792560),
-      /*new ProjectEulerProblemTestCase(6, 25164150),
+      new ProjectEulerProblemTestCase(6, 25164150),
       new ProjectEulerProblemTestCase(7, 104743),
       new ProjectEulerProblemTestCase(8, 23514624000),
-      new ProjectEulerProblemTestCase(9, 31875000),*/
+      new ProjectEulerProblemTestCase(9, 31875000),
+      new ProjectEulerProblemTestCase(10, 142913828922),
+      new ProjectEulerProblemTestCase(11, 70600674),
+      //new ProjectEulerProblemTestCase(12, 76576500, 30000),
+      new ProjectEulerProblemTestCase(13, 5537376230),
+      new ProjectEulerProblemTestCase(14, 837799, 5000),
+      new ProjectEulerProblemTestCase(15, 137846528820),
+      new ProjectEulerProblemTestCase(16, 1366),
+      new ProjectEulerProblemTestCase(17, 21124),
+      new ProjectEulerProblemTestCase(18, 1074),
+      new ProjectEulerProblemTestCase(19, 171),
     ]
     for (var i in test_cases) {
       itShouldTestSingleCase(test_cases[i])      

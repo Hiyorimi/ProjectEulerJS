@@ -1,4 +1,14 @@
 'use strict'
+
+const Problem = require('./problem').Problem;
+
+function Problem11 (problem_text, input_arguments) {
+  Problem.apply(this, arguments);
+}
+
+Problem11.prototype = Object.create(Problem.prototype);
+Problem11.prototype.constructor = Problem11;
+
 var problem = `In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 \n
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -24,8 +34,8 @@ var problem = `In the 20×20 grid below, four numbers along a diagonal line have
 \n
 The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 \n
-What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?`
-console.log(problem);
+What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, 
+    or diagonally) in the 20×20 grid?`
 
 function getDiagonalProducts(index, arr) {
     //left top to right bottom
@@ -93,7 +103,8 @@ function getDataAsArray() {
     return data;
 }
 
-function solution () {
+
+Problem11.prototype.getSolution =  function () {
 	var arr = getDataAsArray();
     var products = [];
     for (var i=0; i<arr.length-3;i++) {
@@ -113,8 +124,9 @@ function solution () {
     return Math.max.apply(null, products);
 }
 
-function solve () {
-  return "Answer: " + solution();
+if (require.main === module) {
+    const problem = new Problem11(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem11;
 }
-
-console.log (solve());

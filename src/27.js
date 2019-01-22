@@ -1,20 +1,6 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
-
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
+const Problem = require('./problem').Problem;
 
 function Problem27 (problem_text) {
   this._problem_text = problem_text;
@@ -24,43 +10,6 @@ function Problem27 (problem_text) {
 
 Problem27.prototype = Object.create(Problem.prototype);
 Problem27.prototype.constructor = Problem27;
-
-//From http://stackoverflow.com/questions/15471291/sieve-of-eratosthenes-algorithm-in-javascript-running-endless-for-large-number
-Problem27.prototype.sieveOfEratosthenes = function (max) {
-    // Eratosthenes algorithm to find all primes under max
-    var array = [], upperLimit = Math.sqrt(max), output = [];
-
-    // Make an array from 2 to (n - 1)
-    for (var i = 0; i < max; i++) {
-        array.push(true);
-    }
-
-    // Remove multiples of primes starting from 2, 3, 5,...
-    for (var i = 2; i <= upperLimit; i++) {
-        if (array[i]) {
-            for (var j = i * i; j < max; j += i) {
-                array[j] = false;
-            }
-        }
-    }
-
-    // All array[i] set to true are primes
-    for (var i = 2; i < max; i++) {
-        if(array[i]) {
-            output.push(i);
-        }
-    }
-
-    return output;
-}
-
-Problem27.prototype.isPrime = function (num) {
-  for (var i=0;i<this.primes.length;i++){
-    if (num==this.primes[i])
-      return true;
-  }
-  return false;
-}
 
 Problem27.prototype.getSolution = function () {
 

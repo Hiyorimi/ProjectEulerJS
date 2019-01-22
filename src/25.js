@@ -1,21 +1,6 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
-
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
-
+const Problem = require('./problem').Problem;
 //big-integer is better than BigInt 
 var bigInt = require("big-integer");
 
