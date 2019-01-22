@@ -1,3 +1,5 @@
+const bigInt = require("big-integer");
+
 /**
  * Sets Problem
  * @class Class for projecteuler problem. input_arguments
@@ -84,6 +86,28 @@ Problem.prototype.factorial = function (n) {
     return result;
 }
 
+
+/**
+ * bigIntFactorial(n) returns n!
+ *
+ * @param {Int} n
+ * @return {Int} n!
+ */
+Problem.prototype.bigIntFactorial = function (n) {
+    let result = bigInt(1);
+
+    if ( n<=1 ) { 
+        return bigInt(1); 
+    }
+    else { 
+      while ( n != 1 )
+      {
+         result = result.multiply(n);
+         n--;
+      }
+    }
+    return result;
+}
 
 /**
  * getDigitsFactorialSum(digits) sum of factorials of digits
@@ -591,6 +615,19 @@ Problem.prototype.doesArrayOfArraysContainArray =
   return false;
 }
 
+
+Problem.prototype.binomialCoefficient = function (n, k) {
+  const numerator = this.factorial(n);
+  const denominator = this.factorial(n - k) * this.factorial(k);
+  return numerator / denominator;
+}
+
+
+Problem.prototype.bigIntBinomialCoefficient = function (n, k) {
+    const numerator = this.bigIntFactorial(n);
+    const denominator = this.bigIntFactorial(n - k).multiply(this.bigIntFactorial(k));
+    return numerator.divide(denominator);
+  }
 
 module.exports = new Problem();
 module.exports.Problem = Problem;

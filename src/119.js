@@ -1,7 +1,7 @@
 'use strict'
 
 let Problem = require('./problem').Problem;
-//big-integer is better than BigInt 
+// big-integer is better than BigInt 
 let bigInt = require("big-integer");
 
 function Problem119 (problem_text, input_arguments) {
