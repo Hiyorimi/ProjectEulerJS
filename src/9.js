@@ -1,12 +1,22 @@
 'use strict'
-var problem = `A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+
+const Problem = require('./problem').Problem;
+
+function Problem9 (problem_text, input_arguments) {
+  Problem.apply(this, arguments);
+}
+
+Problem9.prototype = Object.create(Problem.prototype);
+Problem9.prototype.constructor = Problem9;
+
+var problem_text = `A Pythagorean triplet is a set of three natural numbers, 
+a < b < c, for which,
 \n
 a2 + b2 = c2
 For example, 32 + 42 = 9 + 16 = 25 = 52.
 \n
 There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.`
-console.log(problem);
 
 function getProduct (str){
 	var product = 1;
@@ -17,7 +27,8 @@ function getProduct (str){
 	return product;
 }
 
-function solution () {
+
+Problem9.prototype.getSolution = function solution () {
 	var a=0, b=0, c=0;
 	for (;a<998;a++) {
 		for (b=a+1;b<998; b++) {
@@ -29,8 +40,9 @@ function solution () {
 	}
 }
 
-function solve () {
-  return "Answer: " + solution();
+if (require.main === module) {
+    const problem = new Problem9(problem_text, process.argv.splice(2, process.argv.length - 1));
+    problem.solve();
+} else {
+    module.exports.SolvedProblem = Problem9;
 }
-
-console.log (solve());

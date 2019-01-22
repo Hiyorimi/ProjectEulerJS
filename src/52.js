@@ -16,18 +16,6 @@ Problem52.prototype = Object.create(Problem.prototype);
 Problem52.prototype.constructor = Problem52;
 
 /**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem52.prototype.getDigits = function (n) {
-  return n.toString().split('').map( (elem) => {
-    return +elem;
-  });
-}
-
-/**
  * containsOnlyValuesAs(secondArray) returns digits of input parameter
  *
  * @param {Array} secondArray

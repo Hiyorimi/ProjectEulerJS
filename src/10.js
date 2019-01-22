@@ -1,8 +1,17 @@
 'use strict'
-var problem = `The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+const Problem = require('./problem').Problem;
+
+function Problem10 (problem_text, input_arguments) {
+  Problem.apply(this, arguments);
+}
+
+Problem10.prototype = Object.create(Problem.prototype);
+Problem10.prototype.constructor = Problem10;
+
+var problem_text = `The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 \n
 Find the sum of all the primes below two million.`
-console.log(problem);
 
 
 
@@ -23,8 +32,13 @@ function solution (max) {
     })
 }
 
-function solve () {
-  return "Answer: " + solution(2000000);
+Problem10.prototype.getSolution = function () {
+  return solution(2000000);
 }
 
-console.log (solve());
+if (require.main === module) {
+    const problem = new Problem10(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem10;
+}

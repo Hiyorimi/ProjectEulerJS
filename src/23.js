@@ -1,20 +1,6 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
-
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
+const Problem = require('./problem').Problem;
 
 function Problem23 (problem_text) {
   this._problem_text = problem_text;
@@ -24,24 +10,6 @@ function Problem23 (problem_text) {
 Problem23.prototype = Object.create(Problem.prototype);
 Problem23.prototype.constructor = Problem23;
 
-//from http://jsfiddle.net/r8wh715t/
-Problem23.prototype.getDivisors = function (num, exclude_self) {
-    var exclude_self = typeof exclude_self !== 'undefined' ? exclude_self : false;
-    var divisors = [1] // 1 will be a part of every solution.
-    var half = Math.floor(num / 2), // Ensures a whole number <= num.
-        i, j;
-
-    // Determine out increment value for the loop and starting point.
-    num % 2 === 0 ? (i = 2, j = 1) : (i = 3, j = 2);
-
-    for (i; i <= half; i += j) {
-        num % i === 0 ? divisors.push(i) : false;
-    }
-
-    if (!exclude_self)
-      divisors.push(num); // 
-    return divisors;
-}
 
 Problem23.prototype.getAbundantNumbers = function () {
   var abundantNumbers = [12];

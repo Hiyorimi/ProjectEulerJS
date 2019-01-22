@@ -1,44 +1,6 @@
 'use strict'
 
-/**
-     * Sets Problem
-     * @class Class for projecteuler problem
-     * @param {String} problem_text Task as text
-     * @param {Object} arguments Arguments array 
-     */
-function Problem (problem_text, input_arguments) {
-  this._problem_text = problem_text;
-  this._arguments = input_arguments; 
-}
-
-/**
- * getProblemText() returns text of the problem
- *
- * @return {String} this._problem_text
- */
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-/**
- * getSolution() is an abstract function for calculating the answer
- *
- * @return {Int} 0
- */
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-/**
- * solve() prints _problem_text and answer, for which calls this.getSolution()
- * as String
- *
- * @return Nan
- */
-Problem.prototype.solve = function () {
-  console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
-}
-
+const Problem = require('./problem').Problem;
 
 function Problem32 (problem_text, input_arguments) {
   Problem.apply(this, arguments);
@@ -71,41 +33,6 @@ Problem32.prototype.areDigitsDifferent = function (num) {
 
   return result;
 }
-
-/**
- * isPandigital(arr) returns true if all digits are different and are in range 1-9
- *
- * @param {Int} arr of three or more numbers
- * @return {Bool} result
- */
-Problem32.prototype.isPandigital = function (arr) {
-
-  var result = true;
-  var s = '';
-  var chars = {};
-
-  for (var i = 0; i < arr.length; i++) {
-    s = arr[i].toString();
-    for (var j = 0; j < s.length; j++) {
-      if (s[j]=='0') {
-        result = false;
-        break;
-      }
-      if (!(s[j] in chars)) {
-        chars[s[j]] = 1;
-      }
-      else {
-        result = false;
-        break;
-      }
-    }
-  }
-
-
-  return result;
-}
-
-
 
 /**
  * getSolution() calculates in how many different ways can target in pences

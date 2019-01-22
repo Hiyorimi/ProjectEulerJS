@@ -18,18 +18,6 @@ Problem55.prototype = Object.create(Problem.prototype);
 Problem55.prototype.constructor = Problem55;
 
 /**
- * getDigits(n) returns digits of input parameter
- *
- * @param {Int} n
- * @return {Array} digits
- */
-Problem55.prototype.getDigits = function (n) {
-  return n.toString().split('').map( (elem) => {
-    return +elem;
-  });
-}
-
-/**
  * reverseDigits(number_as_array) returns reverse
  *
  * @param {Array} number_as_array
@@ -38,8 +26,6 @@ Problem55.prototype.getDigits = function (n) {
 Problem55.prototype.reverseDigits = function(number_as_array) {
     return bigInt(number_as_array.reverse().join(''));
 }
-
-
 
 /**
  * addReversed (number) adds reversed number to itself

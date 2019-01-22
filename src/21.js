@@ -7,25 +7,6 @@ Problem21.prototype = Object.create(require("./problem").Problem.prototype);
 
 Problem21.prototype.constructor = Problem21;
 
-//from http://jsfiddle.net/r8wh715t/
-Problem21.prototype.getDivisors = function (num, exclude_self) {
-    var exclude_self = typeof exclude_self !== 'undefined' ? exclude_self : false;
-    var divisors = [1] // 1 will be a part of every solution.
-    var half = Math.floor(num / 2), // Ensures a whole number <= num.
-        i, j;
-
-    // Determine out increment value for the loop and starting point.
-    num % 2 === 0 ? (i = 2, j = 1) : (i = 3, j = 2);
-
-    for (i; i <= half; i += j) {
-        num % i === 0 ? divisors.push(i) : false;
-    }
-
-    if (!exclude_self)
-      divisors.push(num); // 
-    return divisors;
-}
-
 Problem21.prototype.getSolution = function () {
 
   var sum = 0, b = 0, sum_divisors2 = 0;
@@ -59,4 +40,4 @@ Evaluate the sum of all the amicable numbers under 10000.`;
 
 var problem = new Problem21(problem_text);
 
-console.log (problem.solve());
+console.log (problem.getSolution());

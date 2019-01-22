@@ -1,5 +1,16 @@
 'use strict'
-var problem = `The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+
+const Problem = require('./problem').Problem;
+
+function Problem8 (problem_text, input_arguments) {
+  Problem.apply(this, arguments);
+}
+
+Problem8.prototype = Object.create(Problem.prototype);
+Problem8.prototype.constructor = Problem8;
+
+var problem_text = `The four adjacent digits in the 1000-digit number that have 
+the greatest product are 9 × 9 × 8 × 9 = 5832.
 \n
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -22,19 +33,18 @@ var problem = `The four adjacent digits in the 1000-digit number that have the g
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
 \n
-Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?`
-console.log(problem);
+Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. 
+What is the value of this product?`
 
 function getProduct (str){
 	var product = 1;
 	for (var i=0;i<str.length;i++) {
 		product *= +str[i];
 	}
-	console.log(str,product);
 	return product;
 }
 
-function solution (num) {
+Problem8.prototype.getSolution = function (num) {
 	var number_str = `73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -58,7 +68,7 @@ function solution (num) {
 	number_str = number_str.split('\n').join('');
 	var products = [];
 	var subnumber = '';
-	for (var i=0;i<number_str.length-12; i++) {
+	for (var i = 0;i < number_str.length - 12; i++) {
 		subnumber = number_str.substr(i,13);
 		if (subnumber.indexOf('0')==-1) {
 			products.push(getProduct(subnumber));
@@ -67,8 +77,10 @@ function solution (num) {
   	return Math.max.apply(null, products);
 }
 
-function solve () {
-  return "Answer: " + solution();
-}
 
-console.log (solve());
+if (require.main === module) {
+    const problem = new Problem8(problem_text, process.argv.splice(2, process.argv.length - 1));
+    problem.solve();
+} else {
+    module.exports.SolvedProblem = Problem8;
+}

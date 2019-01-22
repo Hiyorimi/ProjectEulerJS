@@ -1,21 +1,6 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
-
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
-
+const Problem = require('./problem').Problem;
 function Problem22 (problem_text) {
   this._problem_text = problem_text;
 }
@@ -57,4 +42,4 @@ What is the total of all the name scores in the file?`;
 
 var problem = new Problem22(problem_text);
 
-console.log (problem.solve());
+console.log (problem.getSolution());

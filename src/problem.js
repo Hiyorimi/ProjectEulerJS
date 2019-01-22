@@ -43,9 +43,7 @@ Problem.prototype.getSolution = function () {
  * @return {Int} 0
  */
 Problem.prototype.solve = function () {
-  if (require.main === module) {
-    console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
-  }
+  console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
   return 0; 
 }
 
@@ -321,6 +319,24 @@ Problem.prototype.getDivisors = function (num, exclude_self) {
       divisors.push(num); // 
     return divisors;
 }
+
+//from http://stackoverflow.com/questions/22130043/trying-to-find-factors-of-a-number-in-js
+function getFactors(num) {
+    var factors = [1]; // 1 will be a part of every solution.
+    var half = Math.floor(num / 2), // Ensures a whole number <= num.
+        i, j;
+
+    // Determine our increment value for the loop and starting point.
+    num % 2 === 0 ? (i = 2, j = 1) : (i = 3, j = 2);
+
+    for (i; i <= half; i += j) {
+        num % i === 0 ? factors.push(i) : false;
+    }
+
+    factors.push(num); // Always include the original number.
+    return factors.length;
+} 
+
 
 
 /**

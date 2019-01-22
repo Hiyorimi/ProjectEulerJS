@@ -1,24 +1,12 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
+const Problem = require('./problem').Problem;
 
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
 
-Problem.prototype.getSolution = function () {
-  return 0;
-}
+function Problem17(problem_text, input_arguments) {
+    Problem.apply(this, arguments);
+  }
 
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
-
-function Problem17 (problem_text) {
-  this._problem_text = problem_text;
-}
 Problem17.prototype = Object.create(Problem.prototype);
 Problem17.prototype.constructor = Problem17;
 Problem17.prototype.getStringFromNumber = function (num) {
@@ -69,13 +57,20 @@ Problem17.prototype.getSolution = function () {
 }
 
 var problem_text = `
-If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 
+3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 \n
-If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many 
+letters would be used?
 \n
-NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) 
-contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.`;
+NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 
+23 letters and 115 (one hundred and fifteen) 
+contains 20 letters. The use of "and" when writing out numbers is in compliance with 
+British usage.`;
 
-var problem = new Problem17(problem_text);
-
-console.log (problem.solve());
+if (require.main === module) {
+    const problem = new Problem17(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem17;
+}

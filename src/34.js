@@ -1,43 +1,6 @@
 'use strict'
 
-/**
-     * Sets Problem
-     * @class Class for projecteuler problem
-     * @param {String} problem_text Task as text
-     * @param {Object} arguments Arguments array 
-     */
-function Problem (problem_text, input_arguments) {
-  this._problem_text = problem_text;
-  this._arguments = input_arguments; 
-}
-
-/**
- * getProblemText() returns text of the problem
- *
- * @return {String} this._problem_text
- */
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
-
-/**
- * getSolution() is an abstract function for calculating the answer
- *
- * @return {Int} 0
- */
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-/**
- * solve() prints _problem_text and answer, for which calls this.getSolution()
- * as String
- *
- * @return Nan
- */
-Problem.prototype.solve = function () {
-  console.log(this.getProblemText() + "\nAnswer: " + this.getSolution());
-}
+const Problem = require('./problem').Problem;
 
 
 function Problem34 (problem_text, input_arguments) {

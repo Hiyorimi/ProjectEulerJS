@@ -1,24 +1,11 @@
 'use strict'
 
-function Problem (problem_text) {
-  this._problem_text = problem_text;
-}
+const Problem = require('./problem').Problem;
 
-Problem.prototype.getProblemText = function () {
-  return this._problem_text;
-}
+function Problem14 (problem_text, input_arguments) {
+    Problem.apply(this, arguments);
+  }
 
-Problem.prototype.getSolution = function () {
-  return 0;
-}
-
-Problem.prototype.solve = function () {
-  return this.getProblemText() + "\nAnswer: " + this.getSolution();
-}
-
-function Problem14 (problem_text) {
-  this._problem_text = problem_text;
-}
 Problem14.prototype = Object.create(Problem.prototype);
 Problem14.prototype.constructor = Problem14;
 
@@ -40,7 +27,7 @@ Problem14.prototype.generateCollatzSequence = function (n) {
     else return [1];
 }
 
-Problem14.prototype.solve = function () {
+Problem14.prototype.getSolution = function () {
     var limit = 1000000;
     var n = 1;
     var longest_sequence_length = 1;
@@ -69,6 +56,9 @@ Which starting number, under one million, produces the longest chain?
 \n
 NOTE: Once the chain starts the terms are allowed to go above one million.`;
 
-var problem = new Problem14(problem_text);
-
-console.log (problem.solve());
+if (require.main === module) {
+    const problem = new Problem14(problem_text, process.argv.splice(2, process.argv.length - 1));
+    console.log(problem.getSolution());
+} else {
+    module.exports.SolvedProblem = Problem14;
+}
