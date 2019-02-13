@@ -147,6 +147,27 @@ describe('Problem', function() {
       assert.equal(3,problem.sumDigits('-102'));
       assert.equal(1,problem.sumDigits('-00010000'));
     });
+
+  });
+
+  describe("#getPrimeFactors(n)", function () {
+    it('should return correct prime factors', function () {
+      var problem = new Problem("test problem");
+      assert.deepStrictEqual([], problem.getPrimeFactors(1));
+      assert.deepStrictEqual([2], problem.getPrimeFactors(2));
+      assert.deepStrictEqual([2, 2], problem.getPrimeFactors(4));
+      assert.deepStrictEqual([2, 5], problem.getPrimeFactors(10));
+    });
+  });
+
+  describe('#getRadical(n)', function () {
+    it('should return correct radical values', function () {
+      var problem = new Problem("test problem");
+      assert.equal(1, problem.getRadical(1));
+      assert.equal(3, problem.getRadical(3));
+      assert.equal(10, problem.getRadical(10));
+      assert.equal(42, problem.getRadical(504));
+    });
   });
 });
 

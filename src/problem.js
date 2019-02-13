@@ -320,24 +320,6 @@ Problem.prototype.getDivisors = function (num, exclude_self) {
     return divisors;
 }
 
-//from http://stackoverflow.com/questions/22130043/trying-to-find-factors-of-a-number-in-js
-function getFactors(num) {
-    var factors = [1]; // 1 will be a part of every solution.
-    var half = Math.floor(num / 2), // Ensures a whole number <= num.
-        i, j;
-
-    // Determine our increment value for the loop and starting point.
-    num % 2 === 0 ? (i = 2, j = 1) : (i = 3, j = 2);
-
-    for (i; i <= half; i += j) {
-        num % i === 0 ? factors.push(i) : false;
-    }
-
-    factors.push(num); // Always include the original number.
-    return factors.length;
-} 
-
-
 
 /**
  * gcd(a, b) returns greatest commond divisor
@@ -629,6 +611,45 @@ Problem.prototype.doesArrayOfArraysContainArray =
     }
   }
   return false;
+}
+
+Problem.prototype.getPrimeFactors = function (n) {
+    let root, 
+        factors = [],
+        x;
+    while (1<n) {
+        root = Math.sqrt(n);
+        x = 2;
+        if (n % x) {
+            x = 3;
+            while ((n % x) && ((x += 2) < root));
+        }
+        x = (x > root ) ? n : x;
+        factors.push(x);
+        if ( x === n ) {
+            break;
+        }
+        n /= x;
+    }
+    return factors;
+}
+
+/**
+ * getRadical(n) is a function to calculate radical of n 
+ * The radical of n, rad(n), is the product of the distinct prime factors of 
+ * n. For example, 504 = 2^3 × 3^2 × 7, so rad(504) = 2 × 3 × 7 = 42.
+ *
+ * @param {Number} n - input number
+ * @return {Number} 
+ */
+Problem.prototype.getRadical = function (n){
+  let primeFactors = this.getPrimeFactors(n);
+  let uniquePrimeFactors = new Set(primeFactors);
+  let result = 1;
+  uniquePrimeFactors.forEach(function (factor ) {
+      result *= factor;
+  })
+  return result;
 }
 
 
