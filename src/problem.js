@@ -187,26 +187,109 @@ Problem.prototype.getRandomIntInclusive = function (min, max) {
  * @param {Int} input_arr - array to permutate
  * @return {Array} permutated
  */
-Problem.prototype.getPermutations = function (input_arr) {
-  var results = [];
+Problem.prototype.getPermutations = function (inputArr) {
+    let result = [];
 
-  function permute(arr, memo) {
-    var cur, memo = memo || [];
-
-    for (var i = 0; i < arr.length; i++) {
-      cur = arr.splice(i, 1);
+    const permute = (arr, m = []) => {
       if (arr.length === 0) {
-        results.push(memo.concat(cur));
-      }
-      permute(arr.slice(), memo.concat(cur));
-      arr.splice(i, 0, cur[0]);
-    }
-
-    return results;
-  }
-
-  return permute(input_arr);
+        result.push(m)
+      } else {
+        for (let i = 0; i < arr.length; i++) {
+          let curr = arr.slice();
+          let next = curr.splice(i, 1);
+          permute(curr.slice(), m.concat(next));
+       }
+     }
+   }
+  
+   permute(inputArr)
+  
+   return result;
 }
+
+
+/**
+ * getUniquePermutationsCounts(inputArr) returns all unique 
+ * permutations of input_arr elements.
+ * 
+ * @param {Array} inputArr - array to permutate
+ * @return {Object} permutated
+ */
+Problem.prototype.getUniquePermutationsCounts = function (inputArr) {
+    const permutations = this.getPermutations(inputArr);
+    const uniquePermutations = {};
+    for (let i = 0; i < permutations.length; i++) {
+        let s = permutations[i].join('');
+        if (!uniquePermutations.hasOwnProperty(s)) {
+            uniquePermutations[s] = 0;
+        }
+        uniquePermutations[s]++;
+    }
+   return Object.keys(uniquePermutations).length;
+}
+
+
+
+/**
+ * getCombinationsWithRepetitions (arr, l) draws l times any element of array
+ * with repetitions. It means that ([1, 2], 2)-> [[1, 2], [2, 1], [1, 1], [2, 2]]
+ * 
+ * From: // https://stackoverflow.com/questions/32543936/combination-with-repetition
+ * 
+ * @param {Array} arr - array to draw samples from.
+ * @param {Number} l - length of resulting array.
+ * @return {Array} array of combinations.
+ */
+Problem.prototype.getCombinationsWithRepetitions = function (arr, l) {
+    if(l === void 0) l = arr.length; // Length of the combinations
+    var data = Array(l),             // Used to store state
+        results = [];                // Array of results
+    (function f(pos, start) {        // Recursive function
+      if(pos === l) {                // End reached
+        results.push(data.slice());  // Add a copy of data to results
+        return;
+      }
+      for(var i=start; i<arr.length; ++i) {
+        data[pos] = arr[i];          // Update data
+        f(pos+1, i);                 // Call f recursively
+      }
+    })(0, 0);                        // Start at index 0
+    return results;                  // Return results
+}
+
+/**
+ * maskNumberArray(inputArr) masks input array replacing most common number
+ * with 0, second to most common with 1, etc. and sorting in ascending order.
+ * F.E. : [1, 1, 1, 1, 1, 2, 3, 3] -> [ 0, 0, 0, 0, 0, 1, 1, 2 ]
+ */
+Problem.prototype.maskNumberArray = function (inputArr) {
+    const uniqueElements = {};
+    for (let i = 0; i < inputArr.length; i++) {
+      const number = inputArr[i];
+      if (!uniqueElements.hasOwnProperty(number)) {
+        uniqueElements[number] = 0;
+      }
+      uniqueElements[number]++;
+    }
+    // Create items array
+    const items = Object.keys(uniqueElements).map( (key) => {
+      return [key, uniqueElements[key]];
+    });
+    // Sort the array based on the second element
+    const sortedItems = items.sort((first, second) =>  {
+      return second[1] - first[1];
+    });
+
+    for (let i = 0; i < sortedItems.length; i++) {
+      const key = sortedItems[i][0];
+      uniqueElements[key] = i;
+    }
+    const maskedArray = inputArr.map((elem) => { return uniqueElements[elem]});
+    const sortedAndMaskedArray = maskedArray.sort((first, second) =>  {
+      return first - second;
+    });
+    return sortedAndMaskedArray;
+  }
 
 /**
  * isPandigital(arr) returns true if all digits are different and are in range 1-9
@@ -653,10 +736,37 @@ Problem.prototype.getRadical = function (n){
 }
 
 
+Problem.prototype.kNPermutations = function (n, k, ordered = false) {
+    const numerator = this.factorial(n);
+    let denominator = this.factorial(n - k);
+    if (!ordered) {
+        denominator *= this.factorial(k);
+    }
+    return numerator / denominator;
+}
+
+/**
+ * permutations(n, k) is a function to calculate k-permutations of n 
+ * (n!)/((n-k)!)
+ *
+ * @param {Number} n - set size
+ * @param {Number} k - number of elements
+ * @return {Number} 
+ */
+Problem.prototype.permutations = function (n, k) {
+    return this.kNPermutations(n, k, true);
+  }
+
+/**
+ * binomialCoefficient(n, k) is a function to calculate k-combinations of n 
+ * (n!)/((n-k)!*k!)
+ *
+ * @param {Number} n - set size
+ * @param {Number} k - number of elements
+ * @return {Number} 
+ */
 Problem.prototype.binomialCoefficient = function (n, k) {
-  const numerator = this.factorial(n);
-  const denominator = this.factorial(n - k) * this.factorial(k);
-  return numerator / denominator;
+  return this.kNPermutations(n, k, false);
 }
 
 

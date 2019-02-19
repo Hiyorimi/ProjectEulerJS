@@ -20,7 +20,9 @@ Problem99.prototype.constructor = Problem99;
  */
 Problem99.prototype.getSolution = function () {
 
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
 
   let file_contents = fs.readFileSync(__dirname + '/p099_base_exp.txt');
   let strings = file_contents.toString().split('\n');
@@ -43,7 +45,9 @@ Problem99.prototype.getSolution = function () {
     }
   }
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return greatest_line_number;
 }

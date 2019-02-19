@@ -81,7 +81,9 @@ Problem98.prototype.getMaximumSquare = function (word_a, word_b, maximum_square)
 
 Problem98.prototype.getSolution = function () {
     
-  console.time("Bruteforce");
+  if (require.main === module) {
+    console.time("Bruteforce");
+  }
   let file_contents = fs.readFileSync(__dirname + '/p098_words.txt');
   let words = file_contents.toString().replace(/['"]+/g, '').split(',');
   let hashes = {};
@@ -107,7 +109,9 @@ Problem98.prototype.getSolution = function () {
  });
   
 
-  console.timeEnd("Bruteforce");
+  if (require.main === module) {
+    console.timeEnd("Bruteforce");
+  }
 
   return result;
 }

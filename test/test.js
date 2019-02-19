@@ -18,7 +18,7 @@ function itShouldTestSingleCase(testCase) {
     this.timeout(timeout)
     let Problem = require('../src/' + problem_number).SolvedProblem;
     var problem = new Problem;
-    assert.equal(expected ,problem.getSolution());
+    assert.equal(expected, problem.getSolution());
     done();
   })
 }
@@ -218,7 +218,7 @@ describe('Problem solutions', function() {
     });
   });
 
-  describe('#Testing solutions of problems from 79 to 94 and from 98 to 100', function () {
+  describe('#Testing solutions of problems from 79 to 94 and from 98 to 100 and 205', function () {
     let test_cases = [
       new ProjectEulerProblemTestCase(79, 73162890),
       new ProjectEulerProblemTestCase(80, 40886),
@@ -232,7 +232,7 @@ describe('Problem solutions', function() {
       new ProjectEulerProblemTestCase(88, 7587457),
       new ProjectEulerProblemTestCase(89, 743),
       new ProjectEulerProblemTestCase(91, 14234),
-      new ProjectEulerProblemTestCase(92, 8581146, 12000),
+      new ProjectEulerProblemTestCase(92, 8581146, 20000),
       new ProjectEulerProblemTestCase(93, 1258),
       new ProjectEulerProblemTestCase(94, 518408346),
       //new ProjectEulerProblemTestCase(95, 14316, 10000),
@@ -241,7 +241,8 @@ describe('Problem solutions', function() {
       new ProjectEulerProblemTestCase(98, 18769, 10000),
       new ProjectEulerProblemTestCase(99, 709),
       new ProjectEulerProblemTestCase(100, 756872327473),
-    ]
+      new ProjectEulerProblemTestCase(205, 0.5731440767829801, 20000),
+    ];
     for (var i in test_cases) {
       itShouldTestSingleCase(test_cases[i])      
     }
@@ -251,7 +252,7 @@ describe('Problem solutions', function() {
     it('should return 248155780267521 for 119th problem', function () {
         let Problem119 = require('../src/119').Problem119;
         var problem = new Problem119;
-        assert.equal(bigInt('248155780267521').toString(),problem.getSolution().toString());
+        assert.equal(bigInt('248155780267521').toString(), problem.getSolution().toString());
     });
   });
 
